@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const https = require('https'); // built-in Node.js — no install needed
-const PRAYER_CALENDAR = require('./Prayer-times-data'); // full year timetable
+const PRAYER_CALENDAR = require('./prayer-times-data'); // full year timetable
 
 const app = express();
 const PORT = 3000;
