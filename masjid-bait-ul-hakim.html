@@ -243,14 +243,12 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
   .fund-total-row{flex-direction:column;align-items:flex-start;gap:8px}
   .fund-total-val{font-size:16px}
 
-  /* Ensure sticky donate button is a circular mobile CTA */
-  .sticky-donate{position:fixed;bottom:18px;right:18px;width:56px;height:56px;padding:0;border-radius:50%;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 30px rgba(26,92,58,0.18);z-index:999;transition:transform .3s ease,opacity .3s ease;line-height:1}
-  .sticky-donate span{display:none}
-  .sticky-donate:after{content:'🤲';font-size:22px}
-  .sticky-donate.hidden{transform:translateY(120%);opacity:0;pointer-events:none}
+  /* Keep sticky donate button visible and smaller on mobile */
+  .sticky-donate{position:fixed;bottom:14px;right:14px;background:var(--gold);color:#111;border:none;padding:10px 16px;border-radius:24px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.5);z-index:999;transition:all .3s;font-family:'Nunito',sans-serif;letter-spacing:.4px}
+  .sticky-donate:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,0.45)}
 
   /* add safe spacing so bottom content isn't obscured by the fixed button */
-  body{padding-bottom:90px}
+  body{padding-bottom:80px}
 }
 </style>
 </head>
@@ -1226,23 +1224,11 @@ async function submitContact(){
   }
 }
 
-// ── Scroll: shrink nav and hide mobile donate button on scroll down ──
-let lastScrollY = window.scrollY;
+// ── Scroll: shrink nav ──
 window.addEventListener('scroll',function(){
   const nav = document.getElementById('navbar');
   if(window.scrollY > 60){nav.style.background='rgba(10,45,28,0.98)';}
   else{nav.style.background='rgba(26,92,58,0.97)';}
-
-  const donateBtn = document.querySelector('.sticky-donate');
-  if(donateBtn){
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 120) {
-      donateBtn.classList.add('hidden');
-    } else {
-      donateBtn.classList.remove('hidden');
-    }
-    lastScrollY = currentScrollY;
-  }
 });
 </script>
 
