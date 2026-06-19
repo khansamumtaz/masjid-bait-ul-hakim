@@ -6,7 +6,7 @@ const https = require('https'); // built-in Node.js — no install needed
 const PRAYER_CALENDAR = require('./prayer-times-data'); // full year timetable
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'db.json');
 
 // ══════════════════════════════════════════
