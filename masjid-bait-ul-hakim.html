@@ -372,17 +372,7 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
       <div class="progress-track">
         <div class="progress-bar" id="progressBar" style="width:0%"></div>
       </div>
-      <div class="fund-stats-row">
-        <div class="fund-stat-card">
-          <div class="fund-stat-val" id="totalDonorsDisplay">247</div>
-          <div class="fund-stat-label">Donors</div>
-        </div>
-        <div class="fund-stat-card">
-          <div class="fund-stat-val">₨2.5 Cr</div>
-          <div class="fund-stat-label">Still Needed</div>
-        </div>
-        <!-- Days Left card removed per request -->
-      </div>
+      <!-- Fund stat cards removed per request -->
       <div id="donationSuccess" style="display:none"></div>
       <div id="donateFormWrap">
         <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:var(--green)">Choose Donation Amount</h3>
@@ -1039,7 +1029,8 @@ function submitDonation(){
   document.getElementById('progressBar').style.width = Math.min(pct,100)+'%';
   document.getElementById('raisedDisplay').textContent = '₨' + totalRaised.toLocaleString('en-PK');
   document.getElementById('percentDisplay').textContent = pct + '% reached';
-  document.getElementById('totalDonorsDisplay').textContent = totalDonors;
+  const donorsEl = document.getElementById('totalDonorsDisplay');
+  if (donorsEl) donorsEl.textContent = totalDonors;
   updateHeroStats();
 
   // Method labels
