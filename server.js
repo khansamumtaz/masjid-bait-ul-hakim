@@ -77,17 +77,44 @@ function fmtPKR(n) {
 // Format date/time in Pakistan timezone (UTC+5)
 function formatPKTime(isoString) {
   const date = new Date(isoString);
-  const options = {
-    timeZone: 'Asia/Karachi',
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-    hour12: true
-  };
-  return date.toLocaleString('en-PK', options);
+  
+  // Get UTC components
+  const utcHours = date.getUTCHours();
+  const utcMinutes = date.getUTCMinutes();
+  const utcSeconds = date.getUTCSeconds();
+  const utcDate = date.getUTCDate();
+  const utcMonth = date.getUTCMonth();
+  const utcYear = date.getUTCFullYear();
+  
+  // Add 5 hours for Pakistan time (UTC+5)
+  let pkHours = utcHours + 5;
+  let pkDate = utcDate;
+  let pkMonth = utcMonth;
+  let pkYear = utcYear;
+  
+  // Handle day overflow
+  if (pkHours >= 24) {
+    pkHours -= 24;
+    pkDate += 1;
+    // Handle month overflow
+    const daysInMonth = new Date(utcYear, utcMonth + 1, 0).getDate();
+    if (pkDate > daysInMonth) {
+      pkDate = 1;
+      pkMonth += 1;
+      if (pkMonth > 11) {
+        pkMonth = 0;
+        pkYear += 1;
+      }
+    }
+  }
+  
+  const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                  'July', 'August', 'September', 'October', 'November', 'December'];
+  
+  const ampm = pkHours >= 12 ? 'PM' : 'AM';
+  const hours12 = pkHours % 12 || 12;
+  
+  return `${months[pkMonth]} ${pkDate}, ${pkYear}, ${String(hours12).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')} ${ampm}`;
 }
 
 const methodDetails = {
