@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسجد بیت الحاکم - Masjid Bait ul Hakim</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a84c;
+  --gold-light:#f0d080;
+  --gold-dark:#8b6914;
+  --green:#1a5c3a;
+  --green-light:#2d8a57;
+  --green-pale:#e8f5ee;
+  --cream:#faf8f2;
+  --white:#ffffff;
+  --text:#1a1a1a;
+  --text-muted:#555;
+  --border:#e0d8c0;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(26,92,58,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,168,76,0.3);transition:all .3s}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-brand .arabic{font-family:'Amiri',serif;font-size:22px;color:var(--gold-light);line-height:1}
+.nav-brand .english{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:6px;transition:all .2s;letter-spacing:.3px}
+.nav-links a:hover{color:var(--gold-light);background:rgba(255,255,255,0.08)}
+.nav-donate-btn{background:var(--gold);color:#1a1a1a!important;font-weight:700!important;padding:9px 20px!important;border-radius:20px!important}
+.nav-donate-btn:hover{background:var(--gold-light)!important;color:#111!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--gold-light);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--green);padding:16px 24px;border-bottom:2px solid var(--gold);z-index:999}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;color:rgba(255,255,255,0.9);text-decoration:none;font-size:15px;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--gold-light)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;background:linear-gradient(160deg,#0f3320 0%,#1a5c3a 40%,#0f3320 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+.hero-geo{position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 20v40L40 80 0 60V20z' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Cpath d='M40 10L70 25v30L40 70 10 55V25z' fill='none' stroke='%23c9a84c' stroke-width='.5'/%3E%3C/svg%3E");background-size:80px 80px}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.bismillah{font-family:'Amiri',serif;font-size:clamp(28px,5vw,48px);color:var(--gold-light);letter-spacing:2px;margin-bottom:20px;text-shadow:0 2px 20px rgba(201,168,76,0.3)}
+.hero-arabic{font-family:'Amiri',serif;font-size:clamp(36px,7vw,72px);color:#fff;line-height:1.2;margin-bottom:8px;text-shadow:0 2px 30px rgba(0,0,0,0.4)}
+.hero-english{font-size:clamp(13px,2vw,18px);color:var(--gold-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;font-weight:300}
+.hero-tagline{font-size:clamp(15px,2.5vw,20px);color:rgba(255,255,255,0.75);max-width:520px;margin:0 auto 40px;line-height:1.6;font-weight:300}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#1a1a1a;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.5px;transition:all .3s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.4)}
+.btn-outline{background:transparent;color:#fff;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.5px;border:2px solid rgba(255,255,255,0.4);transition:all .3s;cursor:pointer}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:#fff;transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:64px;padding-top:40px;border-top:1px solid rgba(201,168,76,0.2)}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--gold-light);line-height:1}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+
+/* ── SECTIONS ── */
+section{padding:80px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--gold-dark);font-weight:700;margin-bottom:10px}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--green);margin-bottom:16px;line-height:1.2}
+.section-title-arabic{font-family:'Amiri',serif;font-size:clamp(22px,3vw,32px);color:var(--gold-dark);margin-bottom:24px}
+.section-desc{font-size:16px;color:var(--text-muted);max-width:600px;line-height:1.8}
+.divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:16px 0 32px}
+
+/* ── ABOUT ── */
+#about{background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-img-stack{position:relative;width:100%;max-width:420px;margin:0 auto}
+.about-img-main{position:relative;width:100%;aspect-ratio:4/5;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
+.about-img-main img{width:100%;height:100%;display:block;object-fit:contain;object-position:center}
+.ai-made-badge{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;letter-spacing:.3px;padding:5px 12px;border-radius:20px}
+.mosque-illustration{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.about-features{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.about-feature{display:flex;align-items:flex-start;gap:14px}
+.about-feature-icon{width:40px;height:40px;background:var(--green-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.about-feature-text h4{font-size:15px;font-weight:700;color:var(--green);margin-bottom:3px}
+.about-feature-text p{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* ── FUND ── */
+#fund{background:var(--cream)}
+.fund-header{text-align:center;margin-bottom:48px}
+.fund-header .section-desc{margin:0 auto}
+.fund-box{background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);max-width:700px;margin:0 auto 40px}
+.fund-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.fund-total-label{font-size:14px;color:var(--text-muted);font-weight:600}
+.fund-total-val{font-size:15px;font-weight:700}
+.progress-track{height:20px;background:#eee;border-radius:10px;overflow:hidden;margin-bottom:24px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:10px;transition:width 1.5s ease;position:relative}
+.progress-bar::after{content:'';position:absolute;top:3px;left:8px;right:8px;height:6px;background:rgba(255,255,255,0.3);border-radius:3px}
+.fund-stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px}
+.fund-stat-card{background:var(--cream);border-radius:12px;padding:18px;text-align:center}
+.fund-stat-val{font-size:22px;font-weight:800;color:var(--green);margin-bottom:4px}
+.fund-stat-label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.donate-form{display:flex;flex-direction:column;gap:16px}
+.amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.amount-btn{padding:12px 8px;border:2px solid var(--border);border-radius:10px;background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--text)}
+.amount-btn:hover,.amount-btn.active{border-color:var(--green);background:var(--green-pale);color:var(--green)}
+.custom-input{padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;width:100%;transition:border .2s;outline:none}
+.custom-input:focus{border-color:var(--green)}
+.donor-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+select.custom-input{cursor:pointer}
+.donate-btn{background:var(--green);color:#fff;border:none;padding:16px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif;letter-spacing:.5px}
+.donate-btn:hover{background:var(--green-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,92,58,0.3)}
+.trust-badges{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted)}
+.trust-badge-icon{font-size:16px}
+
+/* ── GALLERY SLIDESHOW ── */
+#progress{background:#fff}
+.slideshow-wrap{position:relative;max-width:900px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.15);background:#000}
+.slideshow-track{display:flex;transition:transform 0.7s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;position:relative}
+.slide img{width:100%;height:auto;max-height:80vh;object-fit:contain;display:block;background:#000}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(10,45,28,0.92) 0%,transparent 100%);padding:40px 28px 22px;color:#fff}
+.slide-caption h4{font-size:17px;font-weight:700;margin-bottom:4px;color:var(--gold-light)}
+.slide-caption p{font-size:13px;color:rgba(255,255,255,0.75)}
+.slide-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.18);backdrop-filter:blur(4px);border:2px solid rgba(255,255,255,0.35);color:#fff;width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;z-index:10}
+.slide-btn:hover{background:var(--gold);border-color:var(--gold);color:#111}
+.slide-btn.prev{left:16px}
+.slide-btn.next{right:16px}
+.slide-dots{display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .3s;border:none;padding:0}
+.dot.active{background:var(--green);transform:scale(1.3)}
+.slide-counter{text-align:center;margin-top:10px;font-size:13px;color:var(--text-muted);font-weight:600}
+.slide-thumbs{display:flex;gap:10px;margin-top:20px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory}
+.slide-thumb{min-width:80px;height:56px;border-radius:8px;overflow:hidden;cursor:pointer;border:3px solid transparent;transition:all .25s;scroll-snap-align:start;flex-shrink:0}
+.slide-thumb img{width:100%;height:100%;object-fit:cover}
+.slide-thumb.active{border-color:var(--green);box-shadow:0 0 0 2px var(--green-pale)}
+
+
+
+/* ── PRAYER TIMES ── */
+
+.pa-icon{font-size:32px;flex-shrink:0}
+.pa-text h4{font-size:15px;font-weight:700;color:var(--gold-light);margin-bottom:4px}
+.pa-text p{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6}
+
+/* ── MAP & CONTACT ── */
+#contact{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.map-container{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);position:relative;}
+.map-placeholder{text-align:center}
+.map-placeholder p{font-size:14px;color:var(--text-muted);margin-top:8px}
+.map-pin{font-size:48px;animation:pin-bounce 2s ease infinite}
+@keyframes pin-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.map-directions-btn{display:inline-block;margin-top:16px;background:var(--green);color:#fff;padding:10px 24px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:700;transition:all .2s}
+.map-directions-btn:hover{background:var(--green-light)}
+.contact-info{margin-bottom:28px}
+.contact-info-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;padding:16px;background:var(--cream);border-radius:12px}
+.ci-icon{width:40px;height:40px;background:var(--green-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ci-text h4{font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.ci-text p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.cf-input{padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;width:100%;transition:border .2s;outline:none;resize:none;background:#fff}
+.cf-input:focus{border-color:var(--green)}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-btn{background:var(--green);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif}
+.cf-btn:hover{background:var(--green-light)}
+.cf-success{display:none;background:#d4edda;color:#155724;padding:14px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;margin-top:8px}
+
+/* ── SERVICES ── */
+#services{background:var(--cream)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.service-card{background:#fff;border-radius:16px;padding:28px;box-shadow:var(--shadow);transition:transform .3s;border-bottom:3px solid transparent}
+.service-card:hover{transform:translateY(-4px);border-bottom-color:var(--gold)}
+.service-icon{font-size:36px;margin-bottom:16px}
+.service-card h3{font-size:17px;font-weight:700;color:var(--green);margin-bottom:8px}
+.service-card p{font-size:13px;color:var(--text-muted);line-height:1.7}
+
+/* ── FOOTER ── */
+footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-brand .arabic{font-family:'Amiri',serif;font-size:28px;color:var(--gold-light);display:block;margin-bottom:4px}
+.footer-brand .english{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+.footer-brand p{font-size:13px;line-height:1.7;margin-top:16px;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold-light);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-col a:hover{color:var(--gold-light)}
+.social-links{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.social-link{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;text-decoration:none;color:rgba(255,255,255,0.7)}
+.social-link:hover{background:var(--gold);color:#111}
+.footer-bottom{text-align:center;padding-top:24px;font-size:12px;color:rgba(255,255,255,0.3)}
+.footer-bottom span{color:var(--gold-light)}
+
+
+
+/* ── DONATION SUCCESS ── */
+.donation-success{display:none;text-align:center;padding:32px;background:var(--green-pale);border-radius:16px;border:2px solid var(--green)}
+.donation-success.show{display:block}
+.donation-success h3{font-size:22px;font-weight:800;color:var(--green);margin-bottom:8px}
+.donation-success p{color:var(--text-muted);font-size:14px}
+
+/* ── STICKY DONATE ── */
+.sticky-donate{position:fixed;bottom:24px;right:24px;background:var(--gold);color:#111;border:none;padding:14px 24px;border-radius:30px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.5);z-index:500;transition:all .3s;font-family:'Nunito',sans-serif;letter-spacing:.5px}
+.sticky-donate:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.6)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:20px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:#eee;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif}
+.modal-close:hover{background:#ddd}
+.modal-title-arabic{font-family:'Amiri',serif;font-size:24px;color:var(--green);margin-bottom:4px}
+.modal-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:20px}
+
+/* ── GALLERY LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:3000;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lb-content{max-width:800px;width:100%;padding:20px;text-align:center;position:relative}
+.lb-img{width:100%;max-height:70vh;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:80px;background:rgba(255,255,255,0.05)}
+.lb-caption{color:rgba(255,255,255,0.7);margin-top:12px;font-size:14px}
+.lb-close{position:absolute;top:-8px;right:-8px;background:var(--gold);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;color:#111;font-weight:700;font-family:'Nunito',sans-serif}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .about-img-stack{margin-bottom:20px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-stats{gap:24px}
+  .amount-grid{grid-template-columns:repeat(2,1fr)}
+  .donor-fields,.cf-row{grid-template-columns:1fr}
+  .fund-stats-row{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#hero" class="nav-brand">
+      <div>
+        <div class="arabic">مسجد بیت الحاکم</div>
+        <div class="english">Masjid Bait ul Hakim</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#fund">Donate</a></li>
+      <li><a href="#progress">Gallery</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#fund" class="nav-donate-btn">💛 Donate Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMenu()">About</a>
+  <a href="#fund" onclick="closeMenu()">Donate</a>
+  <a href="#progress" onclick="closeMenu()">Gallery</a>
+  <a href="#services" onclick="closeMenu()">Services</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+  <a href="#fund" onclick="closeMenu()">💛 Donate Now</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-geo"></div>
+  <div class="hero-content">
+    <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</div>
+    <h1 class="hero-arabic">مسجد بیت الحاکم</h1>
+    <div class="hero-english">Masjid Bait ul Hakim</div>
+    <p class="hero-tagline">Building a house of Allah — a sanctuary for worship, learning, and community. Join us in creating something eternal.</p>
+    <div class="hero-btns">
+      <a href="#fund" class="btn-primary">🤲 Donate & Earn Sadaqah</a>
+      <a href="#progress" class="btn-outline">View Progress</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="hero-raised">₨0</div>
+        <div class="hero-stat-label">Raised</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">₨5 Cr</div>
+        <div class="hero-stat-label">Total Goal</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="hero-donors">0</div>
+        <div class="hero-stat-label">Donors</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">50%</div>
+        <div class="hero-stat-label">Completed</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-img-stack">
+        <div class="about-img-main">
+          <img src="masjid_web_fit.jpg" alt="Masjid Bait ul Hakim Gate">
+        </div>
+      </div>
+      <div>
+        <div class="section-label">About the Masjid</div>
+        <h2 class="section-title">A Place of Peace<br>& Worship</h2>
+        <div class="section-title-arabic">مسجد بیت الحاکم</div>
+        <div class="divider"></div>
+        <p class="section-desc">مسجد بیت الحاکم is being constructed to serve the Muslim community as a center for Salah, Islamic education, and spiritual growth. Every brick laid is Sadaqah Jariyah — a continuing charity that will benefit the community for generations.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="about-feature-icon">🕌</div>
+            <div class="about-feature-text">
+              <h4>Capacity for 2000 Worshippers</h4>
+              <p>Spacious prayer hall designed for the entire community, with separate areas for brothers and sisters.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">📚</div>
+            <div class="about-feature-text">
+              <h4>Quran & Islamic Education</h4>
+              <p>Dedicated madrasa and learning rooms for children and adults to study Quran and Islamic sciences.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="about-feature-icon">🤝</div>
+            <div class="about-feature-text">
+              <h4>Community Welfare</h4>
+              <p>Space for community events, nikah ceremonies, and social programs for the ummah.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUND COLLECTION -->
+<section id="fund">
+  <div class="section-inner">
+    <div class="fund-header">
+      <div class="section-label">Fund Collection</div>
+      <h2 class="section-title">Support the Construction</h2>
+      <div class="section-title-arabic">صدقہ جاریہ — Sadaqah Jariyah</div>
+      <div class="divider" style="margin:16px auto 16px"></div>
+      <p class="section-desc">The Prophet ﷺ said: "Whoever builds a mosque for Allah, Allah will build for him a house in Paradise." — (Bukhari & Muslim)</p>
+    </div>
+    <div class="fund-box" id="fundBox">
+      <div class="fund-total-row">
+        <span class="fund-total-label">Total Raised</span>
+        <span class="fund-total-val" id="raisedDisplay">₨2,50,00,000</span>
+      </div>
+      <div class="fund-total-row" style="margin-bottom:8px">
+        <span class="fund-total-label" style="font-size:12px;color:#aaa">Goal: ₨5,00,00,000</span>
+        <span class="fund-total-val" style="font-size:13px;color:var(--green)" id="percentDisplay">50% reached</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-bar" id="progressBar" style="width:0%"></div>
+      </div>
+      <div class="fund-stats-row">
+        <div class="fund-stat-card">
+          <div class="fund-stat-val" id="totalDonorsDisplay">247</div>
+          <div class="fund-stat-label">Donors</div>
+        </div>
+        <div class="fund-stat-card">
+          <div class="fund-stat-val">₨2.5 Cr</div>
+          <div class="fund-stat-label">Still Needed</div>
+        </div>
+        <div class="fund-stat-card">
+          <div class="fund-stat-val">38</div>
+          <div class="fund-stat-label">Days Left</div>
+        </div>
+      </div>
+      <div id="donationSuccess" style="display:none"></div>
+      <div id="donateFormWrap">
+        <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:var(--green)">Choose Donation Amount</h3>
+        <div class="donate-form">
+          <div class="amount-grid">
+            <button class="amount-btn" onclick="selectAmount(this,'500')">₨500</button>
+            <button class="amount-btn" onclick="selectAmount(this,'1000')">₨1,000</button>
+            <button class="amount-btn active" onclick="selectAmount(this,'5000')">₨5,000</button>
+            <button class="amount-btn" onclick="selectAmount(this,'10000')">₨10,000</button>
+          </div>
+          <input type="number" class="custom-input" id="customAmount" placeholder="Or enter custom amount (PKR)" value="Amount">
+          <div class="donor-fields">
+            <input type="text" class="custom-input" id="donorName" placeholder="Your Name">
+            <input type="tel" class="custom-input" id="donorPhone" placeholder="Your Phone Number">
+          </div>
+          <input type="email" class="custom-input" id="donorEmail" placeholder="📧 Your Email (optional — for receipt)">
+          <select class="custom-input" id="paymentMethod" onchange="showPaymentDetails(this.value)">
+            <option value="">-- Select Payment Method --</option>
+            <option value="jazzcash">📱 JazzCash</option>
+            <option value="easypaisa">📱 EasyPaisa</option>
+            <option value="bank">🏦 Bank Transfer (Meezan Bank)</option>
+            <option value="cash">💵 Cash (Visit Masjid)</option>
+          </select>
+
+          <!-- ── PAYMENT DETAILS PANEL ── -->
+          <div id="paymentDetails" style="display:none;border-radius:12px;overflow:hidden;border:2px solid var(--border)">
+
+            <!-- JazzCash -->
+            <div id="pd-jazzcash" class="pd-panel" style="display:none;background:linear-gradient(135deg,#fff8f0,#fff3e0);padding:20px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+                <div style="width:42px;height:42px;background:#F57C00;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px">🟠</div>
+                <div>
+                  <div style="font-size:15px;font-weight:800;color:#F57C00">JazzCash</div>
+                  <div style="font-size:11px;color:#888">Send money to this number</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:10px;padding:14px;margin-bottom:10px">
+                <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Account Number</div>
+                <div style="font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:1px">0329-4361882</div>
+                <div style="font-size:12px;color:#666;margin-top:4px">Account Title: <strong>Mumtaz Ahmad Rana</strong></div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button onclick="copyText('0329-4361882','jazzcash-copy')" id="jazzcash-copy" style="flex:1;background:#F57C00;color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif">📋 Copy Number</button>
+              </div>
+              <div style="font-size:12px;color:#888;margin-top:10px;text-align:center">After sending, click <strong>Confirm Donation</strong> below ↓</div>
+            </div>
+
+            <!-- EasyPaisa -->
+            <div id="pd-easypaisa" class="pd-panel" style="display:none;background:linear-gradient(135deg,#f8f0f5,#fce4ec);padding:20px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+                <div style="width:42px;height:42px;background:#C2185B;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px">📱</div>
+                <div>
+                  <div style="font-size:15px;font-weight:800;color:#C2185B">EasyPaisa</div>
+                  <div style="font-size:11px;color:#888">Send money to this number</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:10px;padding:14px;margin-bottom:10px">
+                <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Account Number</div>
+                <div style="font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:1px">0329-4361882</div>
+                <div style="font-size:12px;color:#666;margin-top:4px">Account Title: <strong>Mumtaz Ahmad Rana</strong></div>
+              </div>
+              <div style="display:flex;gap:8px">
+                <button onclick="copyText('0329-4361882','easypaisa-copy')" id="easypaisa-copy" style="flex:1;background:#C2185B;color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif">📋 Copy Number</button>
+              </div>
+              <div style="font-size:12px;color:#888;margin-top:10px;text-align:center">After sending, click <strong>Confirm Donation</strong> below ↓</div>
+            </div>
+
+            <!-- Bank Transfer -->
+            <div id="pd-bank" class="pd-panel" style="display:none;background:linear-gradient(135deg,#f0f4ff,#e8f0fe);padding:20px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+                <div style="width:42px;height:42px;background:#0D6EFD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px">🏦</div>
+                <div>
+                  <div style="font-size:15px;font-weight:800;color:#0D6EFD">Meezan Bank</div>
+                  <div style="font-size:11px;color:#888">Bank transfer details</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px;margin-bottom:10px">
+                <div>
+                  <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Bank Name</div>
+                  <div style="font-size:15px;font-weight:700">Meezan Bank</div>
+                </div>
+                <div>
+                  <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Account Title</div>
+                  <div style="font-size:15px;font-weight:700">Mumtaz Ahmad Rana</div>
+                </div>
+                <div>
+                  <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Account Number</div>
+                  <div style="font-size:15px;font-weight:700;color:#999">To be updated soon</div>
+                </div>
+                <div>
+                  <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">IBAN</div>
+                  <div style="font-size:10px;font-weight:700;color:#999">To be updated soon</div>
+                </div>
+              </div>
+              <div style="font-size:12px;color:#888;text-align:center">After transfer, click <strong>Confirm Donation</strong> below ↓</div>
+            </div>
+
+            <!-- Cash -->
+            <div id="pd-cash" class="pd-panel" style="display:none;background:linear-gradient(135deg,#e8f5ee,#f0faf4);padding:20px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+                <div style="width:42px;height:42px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px">💵</div>
+                <div>
+                  <div style="font-size:15px;font-weight:800;color:var(--green)">Cash Donation</div>
+                  <div style="font-size:11px;color:#888">Visit the masjid directly</div>
+                </div>
+              </div>
+              <div style="background:#fff;border-radius:10px;padding:14px;margin-bottom:10px">
+                <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">📍 Masjid Address</div>
+                <div style="font-size:15px;font-weight:700;color:#1a1a1a;line-height:1.5">Masjid Bait ul Hakim<br>Maraka Quarters, Multan Road<br>Lahore</div>
+                <div style="margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0">
+                  <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">🕐 Collection Hours</div>
+                  <div style="font-size:13px;color:#555">After any prayer · Saturday & Sunday anytime</div>
+                </div>
+              </div>
+              <a href="https://maps.google.com/?q=Maraka+Quarters+Multan+Road+Lahore" target="_blank" style="display:block;background:var(--green);color:#fff;text-align:center;padding:10px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700">🗺️ Open in Google Maps</a>
+            </div>
+
+          </div>
+          <!-- ── END PAYMENT DETAILS ── -->
+
+          <!-- Payment confirmation checkbox -->
+          <div id="paymentConfirmWrap" style="display:none;background:var(--green-pale);border:2px solid var(--green);border-radius:12px;padding:16px">
+            <label style="display:flex;align-items:flex-start;gap:12px;cursor:pointer">
+              <input type="checkbox" id="paymentDoneCheck" onchange="toggleDonateBtn()" style="width:20px;height:20px;margin-top:2px;accent-color:var(--green);flex-shrink:0">
+              <span style="font-size:13px;font-weight:600;color:var(--green);line-height:1.5">
+                ✅ I confirm that I have <strong>already sent the payment</strong> using the method selected above. I understand this just records my donation — it will be verified by the masjid admin.
+              </span>
+            </label>
+          </div>
+          <button class="donate-btn" id="donateFinalBtn" onclick="submitDonation()" style="opacity:0.4;pointer-events:none">🤲 Submit Donation Record</button>
+        </div>
+        <div class="trust-badges">
+          <div class="trust-badge"><span class="trust-badge-icon">🔒</span> 100% Secure</div>
+          <div class="trust-badge"><span class="trust-badge-icon">📋</span> Transparent Accounts</div>
+          <div class="trust-badge"><span class="trust-badge-icon">🕌</span> Verified Masjid</div>
+          <div class="trust-badge"><span class="trust-badge-icon">📜</span> Receipt Issued</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cost Breakdown -->
+    <h3 style="text-align:center;font-size:20px;font-weight:800;color:var(--green);margin-bottom:24px">Construction Cost Breakdown</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;max-width:900px;margin:0 auto">
+      <div class="fund-stat-card" style="background:#fff;border-left:4px solid var(--green)">
+        <div class="fund-stat-val" style="font-size:18px">₨1 Cr</div>
+        <div class="fund-stat-label">Foundation & Structure</div>
+        <div style="font-size:11px;color:var(--green);margin-top:4px;font-weight:600">✓ Completed</div>
+      </div>
+      <div class="fund-stat-card" style="background:#fff;border-left:4px solid var(--green)">
+        <div class="fund-stat-val" style="font-size:18px">₨1 Cr</div>
+        <div class="fund-stat-label">Brickwork & Walls</div>
+        <div style="font-size:11px;color:var(--green);margin-top:4px;font-weight:600">✓ Completed</div>
+      </div>
+      <div class="fund-stat-card" style="background:#fff;border-left:4px solid var(--gold-dark)">
+        <div class="fund-stat-val" style="font-size:18px">₨1 Cr</div>
+        <div class="fund-stat-label">Roof & Dome</div>
+        <div style="font-size:11px;color:var(--gold-dark);margin-top:4px;font-weight:600">⏳ In Progress</div>
+      </div>
+      <div class="fund-stat-card" style="background:#fff;border-left:4px solid #aaa">
+        <div class="fund-stat-val" style="font-size:18px">₨65L</div>
+        <div class="fund-stat-label">Flooring & Tiling</div>
+        <div style="font-size:11px;color:#aaa;margin-top:4px;font-weight:600">📅 Upcoming</div>
+      </div>
+      <div class="fund-stat-card" style="background:#fff;border-left:4px solid #aaa">
+        <div class="fund-stat-val" style="font-size:18px">₨45L</div>
+        <div class="fund-stat-label">Electrical & Plumbing</div>
+        <div style="font-size:11px;color:#aaa;margin-top:4px;font-weight:600">📅 Upcoming</div>
+      </div>
+      <div class="fund-stat-card" style="background:#fff;border-left:4px solid #aaa">
+        <div class="fund-stat-val" style="font-size:18px">₨90L</div>
+        <div class="fund-stat-label">Interior & Furnishing</div>
+        <div style="font-size:11px;color:#aaa;margin-top:4px;font-weight:600">📅 Upcoming</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSTRUCTION PROGRESS GALLERY -->
+<section id="progress">
+  <div class="section-inner">
+    <div class="section-label">Construction Progress</div>
+    <h2 class="section-title">See the Masjid Taking Shape</h2>
+    <div class="divider"></div>
+
+    <div class="slideshow-wrap">
+      <div class="slideshow-track" id="slideshowTrack">
+        <!-- Slide 1 -->
+        <div class="slide">
+          <img src="img1.jpeg" alt="Masjid Entrance">
+          <div class="slide-caption">
+            <h4>Masjid Bait ul Hakim — Main Entrance</h4>
+            <p>The entrance gate with Islamic arched windows and the masjid signboard — June 2026</p>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="slide">
+          <img src="img10.jpeg" alt="Upper Floor Arches">
+          <div class="slide-caption">
+            <h4>Upper Floor — Brick Arches & Corridor</h4>
+            <p>Beautiful Islamic brick arches on the second floor — roof slab yet to come</p>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="slide">
+          <img src="img11.jpeg" alt="Masjid Structure Overview">
+          <div class="slide-caption">
+            <h4>Overall Structure — Two Floors Rising</h4>
+            <p>Both floors visible — ground floor operational, upper floor under construction</p>
+          </div>
+        </div>
+        <!-- Slide 4 -->
+        <div class="slide">
+          <img src="img5.jpeg" alt="Quran Class">
+          <div class="slide-caption">
+            <h4>Quran Classes — Already Running</h4>
+            <p>Children learning Quran at the masjid — the community is already being served</p>
+          </div>
+        </div>
+        <!-- Slide 5 -->
+        <div class="slide">
+          <img src="img6.jpeg" alt="Community Gathering">
+          <div class="slide-caption">
+            <h4>Community Fundraising Meeting</h4>
+            <p>Community members gathered for donation collection after prayers — June 2026</p>
+          </div>
+        </div>
+        <!-- Slide 6 -->
+        <div class="slide">
+          <img src="img7.jpeg" alt="Donation Distribution">
+          <div class="slide-caption">
+            <h4>Donation Drive — Students & Elders</h4>
+            <p>Young students receiving reward booklets during the fundraising drive</p>
+          </div>
+        </div>
+        <!-- Slide 7 -->
+        <div class="slide">
+          <img src="img2.jpeg" alt="Wudu / Bathroom Tiling">
+          <div class="slide-caption">
+            <h4>Wudu Area — Tiling in Progress</h4>
+            <p>White tiles being laid in the ablution stalls — plumbing and drainage underway</p>
+          </div>
+        </div>
+        <!-- Slide 8 -->
+        <div class="slide">
+          <img src="img3.jpeg" alt="Wudu Area Construction">
+          <div class="slide-caption">
+            <h4>Wudu Area — Courtyard View</h4>
+            <p>Wudu taps being installed along the courtyard wall — active construction phase</p>
+          </div>
+        </div>
+        <!-- Slide 9 -->
+        <div class="slide">
+          <img src="img4.jpeg" alt="Plumbing Work">
+          <div class="slide-caption">
+            <h4>Plumbing & Metalwork</h4>
+            <p>Skilled workers welding and fitting water pipes for the ablution area — June 2026</p>
+          </div>
+        </div>
+        <!-- Slide 10 -->
+        <div class="slide">
+          <img src="img8.jpeg" alt="Bathroom Stalls">
+          <div class="slide-caption">
+            <h4>Bathroom / Washroom Stalls — Complete</h4>
+            <p>Tiled bathroom stalls with drainage — nearing completion</p>
+          </div>
+        </div>
+        <!-- Slide 11 -->
+        <div class="slide">
+          <img src="img9.jpeg" alt="Floor Preparation">
+          <div class="slide-caption">
+            <h4>Upper Floor — Marble Base Pegs Laid</h4>
+            <p>Concrete level pegs placed for marble flooring of the new upper hall</p>
+          </div>
+        </div>
+        <!-- Slide 12 -->
+        <div class="slide">
+          <img src="img12.jfif" alt="Community Gathering Inside Masjid">
+          <div class="slide-caption">
+            <h4>Community Programme — Main Prayer Hall</h4>
+            <p>A gathering of community members and children inside the masjid hall — June 2026</p>
+          </div>
+        </div>
+        <!-- Slide 13 -->
+        <div class="slide">
+          <img src="img13.jfif" alt="Building Floor Plan">
+          <div class="slide-caption">
+            <h4>Masjid Floor Plan — Boys & Girls Classrooms</h4>
+            <p>Architectural plan showing 1st & 2nd floor layout with classrooms, ablution areas and open courtyard</p>
+          </div>
+        </div>
+        <!-- Slide 14 -->
+        <div class="slide">
+          <img src="img14.jfif" alt="Community Iftar or Meal">
+          <div class="slide-caption">
+            <h4>Community Meal — Sharing Together</h4>
+            <p>Community members sharing a meal together inside the masjid — a tradition of brotherhood</p>
+          </div>
+        </div>
+        <!-- Slide 15 -->
+        <div class="slide">
+          <img src="img15.jfif" alt="Dastarkhwan Setup">
+          <div class="slide-caption">
+            <h4>Dastarkhwan Ready — Daal & Roti</h4>
+            <p>Food prepared and laid out for students and community members at the masjid</p>
+          </div>
+        </div>
+        <!-- Slide 16 -->
+        <div class="slide">
+          <img src="img16.jfif" alt="Students Eating Together">
+          <div class="slide-caption">
+            <h4>Students Sharing a Meal</h4>
+            <p>Madrassa students seated together for lunch — community welfare in action</p>
+          </div>
+        </div>
+        <!-- Slide 17 -->
+        <div class="slide">
+          <img src="img17.jfif" alt="Madrassa Class in Session">
+          <div class="slide-caption">
+            <h4>Madrassa Uloom ul Hakim — Class in Session</h4>
+            <p>Students attending Islamic education classes inside the masjid premises</p>
+          </div>
+        </div>
+        <!-- Slide 18 -->
+        <div class="slide">
+          <img src="img18.jfif" alt="Ration Distribution">
+          <div class="slide-caption">
+            <h4>Ration Distribution — Community Welfare</h4>
+            <p>Volunteers distributing ration bags to madrassa students and families</p>
+          </div>
+        </div>
+        <!-- Slide 19 -->
+        <div class="slide">
+          <img src="img19.jfif" alt="Masjid Exterior Wall">
+          <div class="slide-caption">
+            <h4>Masjid Exterior — Madrassa Uloom ul Hakim</h4>
+            <p>The outer brick wall of the masjid complex with the madrassa welcome banner</p>
+          </div>
+        </div>
+        <!-- Slide 20 -->
+        <div class="slide">
+          <img src="img20.jfif" alt="Steel Reinforcement Work">
+          <div class="slide-caption">
+            <h4>Steel Reinforcement Being Prepared</h4>
+            <p>Workers carrying steel mesh frames for concrete reinforcement — construction in full swing</p>
+          </div>
+        </div>
+      </div>
+      <button class="slide-btn prev" onclick="changeSlide(-1)">&#8249;</button>
+      <button class="slide-btn next" onclick="changeSlide(1)">&#8250;</button>
+    </div>
+
+    <div class="slide-counter"><span id="slideNum">1</span> / <span id="slideTotal">20</span></div>
+    <div class="slide-dots" id="slideDots"></div>
+
+    <div class="slide-thumbs" id="slideThumbs">
+      <div class="slide-thumb active" onclick="goToSlide(0)"><img src="img1.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(1)"><img src="img10.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(2)"><img src="img11.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(3)"><img src="img5.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(4)"><img src="img6.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(5)"><img src="img7.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(6)"><img src="img2.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(7)"><img src="img3.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(8)"><img src="img4.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(9)"><img src="img8.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(10)"><img src="img9.jpeg" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(11)"><img src="img12.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(12)"><img src="img13.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(13)"><img src="img14.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(14)"><img src="img15.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(15)"><img src="img16.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(16)"><img src="img17.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(17)"><img src="img18.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(18)"><img src="img19.jfif" alt=""></div>
+      <div class="slide-thumb" onclick="goToSlide(19)"><img src="img20.jfif" alt=""></div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Masjid Services</h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🕌</div>
+        <h3>Five Daily Prayers</h3>
+        <p>Jamaat prayers held at the temporary prayer site daily. Full schedule maintained with Adhan and Iqama.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📖</div>
+        <h3>Quran Education</h3>
+        <p>Quran classes for children (ages 5-15) every evening after Maghrib. Tajweed, Hifz, and Nazira programs.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💍</div>
+        <h3>Nikah Services</h3>
+        <p>Nikah ceremonies conducted by certified Islamic scholars. Prior booking required.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎓</div>
+        <h3>Islamic Lectures</h3>
+        <p>Weekly dars after Fajr and Isha. Monthly scholars' programs and special events during Ramadan.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Community Support</h3>
+        <p>Zakat distribution, food assistance for needy families, and welfare programs run by the masjid committee.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🌙</div>
+        <h3>Ramadan Programs</h3>
+        <p>Iftaar arrangements, Taraweeh prayers, I'tikaf, and Laylat-ul-Qadr special programs every Ramadan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT & MAP -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Visit & Contact Us</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="map-container" style="padding:0;background:none;border:none">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1943.4377981759148!2d74.15179047722452!3d31.39453243097138!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3918ff222e759db7%3A0x62a97463104df28d!2smasjid%20Ahle%20hadees!5e0!3m2!1sen!2s!4v1781763193480!5m2!1sen!2s"
+            width="100%" height="360" style="border:0;display:block;border-radius:14px;" 
+            allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <a class="map-directions-btn" 
+             href="https://maps.google.com/?q=31.393578679545257,74.1537863509163" 
+             target="_blank" 
+             style="display:inline-block;margin-top:12px">
+            🗺️ Get Directions
+          </a>
+        </div>
+        <div class="contact-info" style="margin-top:20px">
+          <div class="contact-info-item">
+            <div class="ci-icon">📍</div>
+            <div class="ci-text">
+              <h4>Address</h4>
+              <p>مسجد بیت الحاکم، لاہور<br>Maraka Quarters, Multan Road, Lahore, Punjab, Pakistan</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">📞</div>
+            <div class="ci-text">
+              <h4>Phone</h4>
+              <p>+92 321 4022560</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">📧</div>
+            <div class="ci-text">
+              <h4>Email</h4>
+              <p>ranamumtaz123go@gmail.com</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <div class="ci-icon">🕐</div>
+            <div class="ci-text">
+              <h4>Office Hours</h4>
+              <p>After Fajr – 9 AM & After Asr – 8 PM<br>Saturday & Sunday: After all prayers</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:18px;font-weight:800;color:var(--green);margin-bottom:6px">Send a Message</h3>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Questions, feedback, or inquiries — we'll respond within 24 hours, in sha Allah.</p>
+        <div class="contact-form" id="contactForm">
+          <div class="cf-row">
+            <input type="text" class="cf-input" id="cfName" placeholder="Your Name *" required>
+            <input type="email" class="cf-input" id="cfEmail" placeholder="Email Address *" required>
+          </div>
+          <input type="tel" class="cf-input" id="cfPhone" placeholder="Phone Number">
+          <select class="cf-input" id="cfSubject">
+            <option value="">Select Subject</option>
+            <option>Donation Inquiry</option>
+            <option>Construction Update</option>
+            <option>Nikah Booking</option>
+            <option>Quran Classes</option>
+            <option>General Question</option>
+            <option>Volunteering</option>
+          </select>
+          <textarea class="cf-input" id="cfMessage" rows="4" placeholder="Your message..."></textarea>
+          <button class="cf-btn" onclick="submitContact()">Send Message ✉️</button>
+          <div class="cf-success" id="cfSuccess">✅ Message sent! We'll get back to you soon, in sha Allah.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="arabic">مسجد بیت الحاکم</span>
+        <span class="english">Masjid Bait ul Hakim · Lahore</span>
+        <p>Building a house of Allah for the community. Every contribution — big or small — is Sadaqah Jariyah that will benefit you in this life and the next.</p>
+        <div class="social-links">
+          <a href="https://wa.me/923214022560" target="_blank" title="WhatsApp"
+             style="display:flex;align-items:center;gap:10px;background:#25D366;padding:10px 18px;border-radius:25px;text-decoration:none;transition:all .2s"
+             onmouseover="this.style.background='#20b858'" onmouseout="this.style.background='#25D366'">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:.3px">WhatsApp Contact</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#about">About Masjid</a></li>
+          <li><a href="#fund">Donate Now</a></li>
+          <li><a href="#progress">Construction Gallery</a></li>
+                  </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#services">Five Daily Prayers</a></li>
+          <li><a href="#services">Quran Education</a></li>
+          <li><a href="#services">Nikah Services</a></li>
+          <li><a href="#services">Islamic Lectures</a></li>
+          <li><a href="#services">Ramadan Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Payment Details</h4>
+        <ul>
+          <li><a href="#">📱 JazzCash: 0329-4361882</a></li>
+          <li><a href="#">📱 EasyPaisa: 0329-4361882</a></li>
+          <li><a href="#">🏦 Meezan Bank</a></li>
+          <li><a href="#">Title: Mumtaz Ahmad Rana</a></li>
+          <li><a href="#">A/C: 02090100786883</a></li>
+          <li><a href="#">IBAN: PK09 MEZN 0002 0901 0078 6883</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 <span>مسجد بیت الحاکم</span> — Masjid Bait ul Hakim, Lahore · Built with ❤️ for the Ummah · All donations are for the sake of Allah</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky Donate Button -->
+<button class="sticky-donate" onclick="document.getElementById('fund').scrollIntoView({behavior:'smooth'})">🤲 Donate Now</button>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lb-content" onclick="event.stopPropagation()">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <div class="lb-img" id="lbImg" style="height:300px;font-size:80px"></div>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-caption" id="lbTitle" style="color:#fff;font-weight:700;font-size:16px;margin-top:6px"></div>
+  </div>
+</div>
+
+<script>
+// ── State ──
+let totalRaised = 25000000;
+let totalGoal = 50000000;
+let totalDonors = 247;
+
+// ── Nav Mobile ──
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// ── Animate progress bar on load ──
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    const pct = Math.round(totalRaised/totalGoal*100);
+    document.getElementById('progressBar').style.width = pct + '%';
+  },400);
+  updateHeroStats();
+});
+
+function updateHeroStats(){
+  document.getElementById('hero-raised').textContent = '₨' + (totalRaised/100000).toFixed(1) + 'L';
+  document.getElementById('hero-donors').textContent = totalDonors;
+}
+
+// ── Show payment details on method select ──
+function showPaymentDetails(method){
+  document.getElementById('paymentDetails').style.display = method ? 'block' : 'none';
+  document.querySelectorAll('.pd-panel').forEach(p => p.style.display='none');
+  if(method) {
+    const panel = document.getElementById('pd-'+method);
+    if(panel) panel.style.display='block';
+    document.getElementById('paymentConfirmWrap').style.display = 'block';
+  } else {
+    document.getElementById('paymentConfirmWrap').style.display = 'none';
+  }
+  // Reset checkbox and button
+  document.getElementById('paymentDoneCheck').checked = false;
+  document.getElementById('donateFinalBtn').style.opacity = '0.4';
+  document.getElementById('donateFinalBtn').style.pointerEvents = 'none';
+}
+
+function toggleDonateBtn(){
+  const checked = document.getElementById('paymentDoneCheck').checked;
+  const btn = document.getElementById('donateFinalBtn');
+  btn.style.opacity = checked ? '1' : '0.4';
+  btn.style.pointerEvents = checked ? 'auto' : 'none';
+}
+
+// ── Copy to clipboard ──
+function copyText(text, btnId){
+  navigator.clipboard.writeText(text).then(function(){
+    const btn = document.getElementById(btnId);
+    const orig = btn.textContent;
+    btn.textContent = '✅ Copied!';
+    setTimeout(function(){ btn.textContent = orig; }, 2000);
+  });
+}
+
+// ── Amount selection ──
+function selectAmount(btn,val){
+  document.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('customAmount').value = val;
+}
+
+// ── Submit donation ──
+function submitDonation(){
+  const name = document.getElementById('donorName').value.trim() || 'Anonymous';
+  const phone = document.getElementById('donorPhone').value.trim();
+  const email = document.getElementById('donorEmail').value.trim();
+  const amount = parseInt(document.getElementById('customAmount').value);
+  const method = document.getElementById('paymentMethod').value;
+  if(!amount || amount < 1){alert('Please enter a valid donation amount.');return;}
+  if(!method){alert('Please select a payment method.');return;}
+
+  // Generate donation ID
+  const donationId = 'DON-' + Date.now();
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('en-PK',{year:'numeric',month:'long',day:'numeric'});
+  const timeStr = now.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
+
+  // Update fund stats
+  totalRaised += amount;
+  totalDonors += 1;
+  const pct = Math.round(totalRaised/totalGoal*100);
+  document.getElementById('progressBar').style.width = Math.min(pct,100)+'%';
+  document.getElementById('raisedDisplay').textContent = '₨' + totalRaised.toLocaleString('en-PK');
+  document.getElementById('percentDisplay').textContent = pct + '% reached';
+  document.getElementById('totalDonorsDisplay').textContent = totalDonors;
+  updateHeroStats();
+
+  // Method labels
+  const methodLabels = {jazzcash:'🟠 JazzCash',easypaisa:'📱 EasyPaisa',bank:'🏦 Meezan Bank',cash:'💵 Cash'};
+  const methodLabel = methodLabels[method] || method;
+
+
+  // Show receipt modal
+  showReceipt({donationId, name, phone, email, amount, method, methodLabel, dateStr, timeStr});
+
+  // Send to backend (non-blocking)
+  fetch('/api/donate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,phone,amount,paymentMethod:method})}).catch(()=>{});
+
+  // Reset form
+  document.getElementById('donorName').value='';
+  document.getElementById('donorPhone').value='';
+  document.getElementById('donorEmail').value='';
+  document.getElementById('customAmount').value='';
+  document.getElementById('paymentMethod').value='';
+  document.getElementById('paymentDetails').style.display='none';
+  document.getElementById('paymentConfirmWrap').style.display='none';
+  document.getElementById('paymentDoneCheck').checked=false;
+  document.getElementById('donateFinalBtn').style.opacity='0.4';
+  document.getElementById('donateFinalBtn').style.pointerEvents='none';
+  document.querySelectorAll('.pd-panel').forEach(p=>p.style.display='none');
+  document.querySelectorAll('.amount-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.amount-btn')[2].classList.add('active');
+}
+
+// ── Show receipt modal ──
+function showReceipt(d){
+  const whatsappMsg = encodeURIComponent('السلام علیکم\nI have donated ₨'+d.amount.toLocaleString('en-PK')+' to Masjid Bait ul Hakim via '+d.methodLabel+'\nDonation ID: '+d.donationId+'\nName: '+d.name+'\nDate: '+d.dateStr+' '+d.timeStr);
+  const whatsappNum = '923214022560';
+  document.getElementById('receiptBox').innerHTML = `
+    <button class="modal-close" onclick="closeReceipt()">✕</button>
+    <div id="receiptContent">
+      <div style="text-align:center;padding:8px 0 20px">
+        <div style="font-size:52px">🤲</div>
+        <div style="font-family:'Amiri',serif;font-size:22px;color:var(--green);margin:6px 0">JazakAllah Khair!</div>
+        <div style="font-size:13px;color:var(--text-muted)">May Allah accept your Sadaqah Jariyah</div>
+      </div>
+      <div style="background:var(--green);color:#fff;border-radius:12px;padding:16px;text-align:center;margin-bottom:20px">
+        <div style="font-size:11px;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:4px">Donation Amount</div>
+        <div style="font-size:36px;font-weight:800;color:var(--gold-light)">₨${d.amount.toLocaleString('en-PK')}</div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;margin-bottom:20px">
+        <tr><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888;width:40%">Donation ID</td><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:12px;font-weight:700;font-family:monospace;color:#333">${d.donationId}</td></tr>
+        <tr><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888">Donor Name</td><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:700">${d.name}</td></tr>
+        <tr><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888">Phone</td><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:700">${d.phone||'—'}</td></tr>
+        <tr><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888">Payment Via</td><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:700">${d.methodLabel}</td></tr>
+        <tr><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;color:#888">Masjid</td><td style="padding:9px 0;border-bottom:1px solid #f0f0f0;font-size:13px;font-weight:700">مسجد بیت الحاکم</td></tr>
+        <tr><td style="padding:9px 0;font-size:13px;color:#888">Date & Time</td><td style="padding:9px 0;font-size:13px;font-weight:700">${d.dateStr} · ${d.timeStr}</td></tr>
+      </table>
+      <div style="background:#fff8e1;border-radius:10px;padding:12px;font-size:12px;color:#856404;text-align:center;margin-bottom:20px;line-height:1.5">
+        ⚠️ Please <strong>send payment screenshot</strong> on WhatsApp to confirm your donation
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <a href="https://wa.me/${whatsappNum}?text=${whatsappMsg}" target="_blank" style="display:block;background:#25D366;color:#fff;text-align:center;padding:13px;border-radius:10px;text-decoration:none;font-size:14px;font-weight:700">📱 Send Screenshot on WhatsApp</a>
+        <button onclick="printReceipt()" style="background:var(--green);color:#fff;border:none;padding:13px;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif">🖨️ Print / Save Receipt</button>
+        <button onclick="closeReceipt()" style="background:#f0f0f0;color:#333;border:none;padding:11px;border-radius:10px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Nunito',sans-serif">Close</button>
+      </div>
+    </div>`;
+  document.getElementById('receiptModal').classList.add('open');
+}
+
+function closeReceipt(){ document.getElementById('receiptModal').classList.remove('open'); }
+
+// ── Print receipt ──
+function printReceipt(){
+  const content = document.getElementById('receiptContent').innerHTML;
+  const win = window.open('','_blank','width=480,height=700');
+  win.document.write('<html><head><title>Donation Receipt — مسجد بیت الحاکم</title>');
+  win.document.write('<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">');
+  win.document.write('<style>body{font-family:Nunito,sans-serif;padding:24px;max-width:420px;margin:0 auto}table{width:100%}:root{--green:#1a5c3a;--gold-light:#f0d080;--green-pale:#e8f5ee}</style>');
+  win.document.write('</head><body>');
+  win.document.write('<div style="text-align:center;margin-bottom:12px"><div style="font-family:serif;font-size:24px;color:#1a5c3a">مسجد بیت الحاکم</div><div style="font-size:11px;color:#888;letter-spacing:2px">OFFICIAL DONATION RECEIPT</div></div>');
+  win.document.write(content);
+  win.document.write('</body></html>');
+  win.document.close();
+  win.focus();
+  setTimeout(function(){ win.print(); }, 600);
+}
+
+
+// ── Slideshow ──
+(function(){
+  const TOTAL = 20;
+  let current = 0;
+  let autoTimer = null;
+  let userInteracted = false;
+
+  // Build dots
+  const dotsEl = document.getElementById('slideDots');
+  for(let i=0;i<TOTAL;i++){
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0?' active':'');
+    d.onclick = () => goToSlide(i);
+    dotsEl.appendChild(d);
+  }
+
+  function updateSlideshow(){
+    document.getElementById('slideshowTrack').style.transform = `translateX(-${current*100}%)`;
+    document.getElementById('slideNum').textContent = current+1;
+    document.querySelectorAll('.dot').forEach((d,i)=>d.classList.toggle('active',i===current));
+    document.querySelectorAll('.slide-thumb').forEach((t,i)=>t.classList.toggle('active',i===current));
+    // scroll active thumb into view (within the thumb strip only, never scrolls the page)
+    const thumbs = document.getElementById('slideThumbs');
+    const activeThumb = thumbs.children[current];
+    if(activeThumb && userInteracted){
+      const thumbLeft = activeThumb.offsetLeft - thumbs.offsetLeft;
+      const thumbCenter = thumbLeft - (thumbs.clientWidth / 2) + (activeThumb.clientWidth / 2);
+      thumbs.scrollTo({left: thumbCenter, behavior:'smooth'});
+    }
+  }
+
+  window.changeSlide = function(dir){
+    current = (current + dir + TOTAL) % TOTAL;
+    userInteracted = true;
+    updateSlideshow();
+    resetAuto();
+  };
+
+  window.goToSlide = function(i){
+    current = i;
+    userInteracted = true;
+    updateSlideshow();
+    resetAuto();
+  };
+
+  function resetAuto(){
+    clearInterval(autoTimer);
+    autoTimer = setInterval(()=>{ current=(current+1)%TOTAL; updateSlideshow(); }, 3500);
+  }
+
+  // Start auto-advance at 3.5 seconds
+  resetAuto();
+})();
+
+// ── Contact form ──
+async function submitContact(){
+  const name    = document.getElementById('cfName').value.trim();
+  const email   = document.getElementById('cfEmail').value.trim();
+  const phone   = document.getElementById('cfPhone').value.trim();
+  const subject = document.getElementById('cfSubject').value;
+  const message = document.getElementById('cfMessage').value.trim();
+
+  if(!name || !email || !message){
+    alert('Please fill in required fields (Name, Email, Message).');
+    return;
+  }
+
+  const btn = document.querySelector('.cf-btn');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  try {
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, phone, subject, message })
+    });
+    const data = await res.json();
+
+    if(data.success){
+      document.getElementById('cfSuccess').style.display = 'block';
+      document.getElementById('cfName').value    = '';
+      document.getElementById('cfEmail').value   = '';
+      document.getElementById('cfPhone').value   = '';
+      document.getElementById('cfSubject').value = '';
+      document.getElementById('cfMessage').value = '';
+      setTimeout(function(){ document.getElementById('cfSuccess').style.display='none'; }, 6000);
+    } else {
+      alert('Failed to send message: ' + data.message);
+    }
+  } catch(err) {
+    alert('Could not connect to server. Make sure the server is running.');
+  } finally {
+    btn.textContent = 'Send Message ✉️';
+    btn.disabled = false;
+  }
+}
+
+// ── Scroll: shrink nav ──
+window.addEventListener('scroll',function(){
+  const nav = document.getElementById('navbar');
+  if(window.scrollY > 60){nav.style.background='rgba(10,45,28,0.98)';}
+  else{nav.style.background='rgba(26,92,58,0.97)';}
+});
+</script>
+
+<!-- ── RECEIPT MODAL ── -->
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal-box" style="max-width:480px" id="receiptBox">
+    <button class="modal-close" onclick="closeReceipt()">✕</button>
+    <!-- Receipt content injected by JS -->
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,346 @@
+{
+  "masjid": {
+    "name": "مسجد بیت الحاکم",
+    "nameEnglish": "Masjid Bait ul Hakeem",
+    "location": "Lahore, Punjab, Pakistan",
+    "established": "2023",
+    "totalGoal": 50000000,
+    "totalRaised": 25002000,
+    "totalDonors": 249,
+    "lastUpdated": "2026-06-18T15:00:42.843Z"
+  },
+  "prayerTimes": {
+    "fajr": {
+      "adhan": "04:22",
+      "iqama": "04:40"
+    },
+    "zuhr": {
+      "adhan": "12:10",
+      "iqama": "12:30"
+    },
+    "asr": {
+      "adhan": "16:05",
+      "iqama": "16:20"
+    },
+    "maghrib": {
+      "adhan": "19:18",
+      "iqama": "19:18"
+    },
+    "isha": {
+      "adhan": "20:48",
+      "iqama": "21:00"
+    },
+    "jumuah": {
+      "adhan": "13:00",
+      "iqama": "13:15"
+    }
+  },
+  "costBreakdown": [
+    {
+      "id": 1,
+      "item": "Foundation & Structure",
+      "cost": 10000000,
+      "status": "completed",
+      "paid": 10000000
+    },
+    {
+      "id": 2,
+      "item": "Brickwork & Walls",
+      "cost": 10000000,
+      "status": "completed",
+      "paid": 10000000
+    },
+    {
+      "id": 3,
+      "item": "Roof & Dome",
+      "cost": 10000000,
+      "status": "in_progress",
+      "paid": 5000000
+    },
+    {
+      "id": 4,
+      "item": "Flooring & Tiling",
+      "cost": 6500000,
+      "status": "upcoming",
+      "paid": 0
+    },
+    {
+      "id": 5,
+      "item": "Electrical & Plumbing",
+      "cost": 4500000,
+      "status": "upcoming",
+      "paid": 0
+    },
+    {
+      "id": 6,
+      "item": "Interior & Furnishing",
+      "cost": 9000000,
+      "status": "upcoming",
+      "paid": 0
+    }
+  ],
+  "timeline": [
+    {
+      "id": 1,
+      "date": "January 2023",
+      "title": "Groundbreaking Ceremony",
+      "description": "Land acquired and blessed. Community gathered for the groundbreaking with prayers and recitation.",
+      "status": "completed"
+    },
+    {
+      "id": 2,
+      "date": "April – July 2023",
+      "title": "Foundation & Structural Framework",
+      "description": "Deep foundation poured, steel columns erected. Total investment: ₨28 Lakhs.",
+      "status": "completed"
+    },
+    {
+      "id": 3,
+      "date": "August – December 2023",
+      "title": "Ground Floor Walls & Arches",
+      "description": "Brickwork completed with Islamic arched windows. Main hall structure formed.",
+      "status": "completed"
+    },
+    {
+      "id": 4,
+      "date": "January 2024 — Present",
+      "title": "Upper Floor & Minaret",
+      "description": "Second floor under construction. Minaret base being built. Require ₨27 Lakhs more.",
+      "status": "active"
+    },
+    {
+      "id": 5,
+      "date": "Late 2024",
+      "title": "Dome, Roof & Finishing",
+      "description": "Central dome construction, roof tiles, exterior plastering and painting.",
+      "status": "upcoming"
+    },
+    {
+      "id": 6,
+      "date": "Early 2025",
+      "title": "Interior, Flooring & Inauguration",
+      "description": "Marble flooring, electrical, carpeting, and final inauguration ceremony. First Jumu'ah prayer.",
+      "status": "upcoming"
+    }
+  ],
+  "donations": [
+    {
+      "id": "DON-1700000001",
+      "name": "Ahmed Khan",
+      "phone": "0300-1234567",
+      "amount": 50000,
+      "paymentMethod": "bank",
+      "status": "confirmed",
+      "createdAt": "2024-01-10T08:15:00.000Z"
+    },
+    {
+      "id": "DON-1700000002",
+      "name": "Muhammad Ali",
+      "phone": "0311-9876543",
+      "amount": 25000,
+      "paymentMethod": "easypaisa",
+      "status": "confirmed",
+      "createdAt": "2024-01-18T14:30:00.000Z"
+    },
+    {
+      "id": "DON-1700000003",
+      "name": "Anonymous",
+      "phone": "",
+      "amount": 100000,
+      "paymentMethod": "bank",
+      "status": "confirmed",
+      "createdAt": "2024-02-02T09:00:00.000Z"
+    },
+    {
+      "id": "DON-1700000004",
+      "name": "Fatima Bibi",
+      "phone": "0321-5556789",
+      "amount": 10000,
+      "paymentMethod": "jazzcash",
+      "status": "confirmed",
+      "createdAt": "2024-02-20T11:45:00.000Z"
+    },
+    {
+      "id": "DON-1700000005",
+      "name": "Usman Tariq",
+      "phone": "0333-4441122",
+      "amount": 500000,
+      "paymentMethod": "bank",
+      "status": "confirmed",
+      "createdAt": "2024-03-05T16:00:00.000Z"
+    },
+    {
+      "id": "DON-1781786529168",
+      "name": "Khansa Mumtaz",
+      "phone": "03294362882",
+      "email": "",
+      "amount": 1000,
+      "paymentMethod": "jazzcash",
+      "status": "pending",
+      "createdAt": "2026-06-18T12:42:09.171Z"
+    },
+    {
+      "id": "DON-1781794842842",
+      "name": "Khansa Mumtaz",
+      "phone": "03294362882",
+      "email": "",
+      "amount": 1000,
+      "paymentMethod": "jazzcash",
+      "status": "pending",
+      "createdAt": "2026-06-18T15:00:42.842Z"
+    }
+  ],
+  "contacts": [
+    {
+      "id": "MSG-1700000001",
+      "name": "Imran Hussain",
+      "email": "imran@example.com",
+      "phone": "0300-9999999",
+      "subject": "Donation Inquiry",
+      "message": "Assalamu Alaikum, I would like to know the bank account details for donation. JazakAllah.",
+      "read": true,
+      "createdAt": "2024-03-10T10:00:00.000Z"
+    },
+    {
+      "id": "MSG-1700000002",
+      "name": "Sara Ahmed",
+      "email": "sara@example.com",
+      "phone": "",
+      "subject": "Quran Classes",
+      "message": "I want to enroll my children in Quran classes. Please let me know the schedule and fees.",
+      "read": false,
+      "createdAt": "2024-04-01T13:20:00.000Z"
+    },
+    {
+      "id": "MSG-1781783714316",
+      "name": "Khansa Mumtaz",
+      "email": "khanuurajpoot@gmail.com",
+      "phone": "03294362882",
+      "subject": "Nikah Booking",
+      "message": "tomorrow is my nikkah",
+      "read": false,
+      "createdAt": "2026-06-18T11:55:14.316Z"
+    },
+    {
+      "id": "MSG-1781783827522",
+      "name": "Khansa Mumtaz",
+      "email": "khanuurajpoot@gmail.com",
+      "phone": "03294362882",
+      "subject": "Donation Inquiry",
+      "message": "heelo",
+      "read": false,
+      "createdAt": "2026-06-18T11:57:07.522Z"
+    },
+    {
+      "id": "MSG-1781849838520",
+      "name": "Khansa Mumtaz",
+      "email": "su92-bscsm-f24-343@superior.edu.pk",
+      "phone": "",
+      "subject": "Nikah Booking",
+      "message": "booking for my nikkah",
+      "read": false,
+      "createdAt": "2026-06-19T06:17:18.520Z"
+    },
+    {
+      "id": "MSG-1781855323229",
+      "name": "Khansa Mumtaz",
+      "email": "su92-bscsm-f24-343@superior.edu.pk",
+      "phone": "",
+      "subject": "General",
+      "message": "hello",
+      "read": false,
+      "createdAt": "2026-06-19T07:48:43.229Z"
+    }
+  ],
+  "gallery": [
+    {
+      "id": "IMG-001",
+      "title": "Site Clearing & Leveling",
+      "description": "Land preparation and boundary marking completed.",
+      "phase": "phase1",
+      "imageUrl": "",
+      "date": "2023-02-15",
+      "createdAt": "2023-02-15T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-002",
+      "title": "Foundation Digging & Pouring",
+      "description": "Concrete foundation laid with steel reinforcement.",
+      "phase": "phase1",
+      "imageUrl": "",
+      "date": "2023-04-20",
+      "createdAt": "2023-04-20T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-003",
+      "title": "Steel & Column Framework",
+      "description": "All structural columns and beams erected.",
+      "phase": "phase1",
+      "imageUrl": "",
+      "date": "2023-06-10",
+      "createdAt": "2023-06-10T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-004",
+      "title": "Ground Floor Walls",
+      "description": "Main hall walls completed up to 10 feet.",
+      "phase": "phase2",
+      "imageUrl": "",
+      "date": "2023-08-25",
+      "createdAt": "2023-08-25T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-005",
+      "title": "Window Arches & Openings",
+      "description": "Beautiful Islamic arch designs installed.",
+      "phase": "phase2",
+      "imageUrl": "",
+      "date": "2023-10-12",
+      "createdAt": "2023-10-12T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-006",
+      "title": "Upper Floor & Pillars",
+      "description": "Second floor structure underway.",
+      "phase": "phase3",
+      "imageUrl": "",
+      "date": "2024-01-30",
+      "createdAt": "2024-01-30T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-007",
+      "title": "Minaret Construction",
+      "description": "Minaret base and first 15 feet erected.",
+      "phase": "phase3",
+      "imageUrl": "",
+      "date": "2024-03-18",
+      "createdAt": "2024-03-18T00:00:00.000Z"
+    },
+    {
+      "id": "IMG-008",
+      "title": "Overall Progress View",
+      "description": "68% complete — walls and structure clearly visible.",
+      "phase": "phase3",
+      "imageUrl": "",
+      "date": "2024-05-10",
+      "createdAt": "2024-05-10T00:00:00.000Z"
+    }
+  ],
+  "bankDetails": {
+    "bankName": "HBL (Habib Bank Limited)",
+    "accountTitle": "Masjid Bait ul Hakeem Construction Fund",
+    "accountNumber": "0001-0000000-00",
+    "iban": "PK00HABB0001000000000",
+    "easypaisa": "0300-0000000",
+    "jazzcash": "0300-0000000"
+  },
+  "contact": {
+    "address": "Near Main Boulevard, Lahore, Punjab, Pakistan",
+    "addressUrdu": "مسجد بیت الحاکم، لاہور",
+    "phone1": "+92 300 000 0000",
+    "phone2": "+92 42 0000 0000",
+    "email": "info@masjidbaitul-hakeem.pk",
+    "donationEmail": "donations@masjidbaitul-hakeem.pk",
+    "officeHours": "After Fajr – 9 AM & After Asr – 8 PM"
+  }
+}
