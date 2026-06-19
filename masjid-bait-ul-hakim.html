@@ -235,20 +235,9 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
   .hero-stats{gap:24px}
   .amount-grid{grid-template-columns:repeat(2,1fr)}
   .donor-fields,.cf-row{grid-template-columns:1fr}
-  .fund-stats-row{grid-template-columns:1fr}
+  .fund-stats-row{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr}
 
-  /* Make fund box full-width on mobile */
-  .fund-box{max-width:none;width:100%;margin:0 0 28px;padding:20px 18px;border-radius:16px}
-  .fund-total-row{flex-direction:column;align-items:flex-start;gap:8px}
-  .fund-total-val{font-size:16px}
-
-  /* Keep sticky donate button visible and smaller on mobile */
-  .sticky-donate{position:fixed;bottom:14px;right:14px;background:var(--gold);color:#111;border:none;padding:10px 16px;border-radius:24px;font-size:13px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.5);z-index:999;transition:all .3s;font-family:'Nunito',sans-serif;letter-spacing:.4px}
-  .sticky-donate:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(201,168,76,0.45)}
-
-  /* add safe spacing so bottom content isn't obscured by the fixed button */
-  body{padding-bottom:80px}
 }
 </style>
 </head>
@@ -383,7 +372,20 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
       <div class="progress-track">
         <div class="progress-bar" id="progressBar" style="width:0%"></div>
       </div>
-      <!-- Fund stat cards removed per request -->
+      <div class="fund-stats-row">
+        <div class="fund-stat-card">
+          <div class="fund-stat-val" id="totalDonorsDisplay">247</div>
+          <div class="fund-stat-label">Donors</div>
+        </div>
+        <div class="fund-stat-card">
+          <div class="fund-stat-val">₨2.5 Cr</div>
+          <div class="fund-stat-label">Still Needed</div>
+        </div>
+        <div class="fund-stat-card">
+          <div class="fund-stat-val">38</div>
+          <div class="fund-stat-label">Days Left</div>
+        </div>
+      </div>
       <div id="donationSuccess" style="display:none"></div>
       <div id="donateFormWrap">
         <h3 style="font-size:16px;font-weight:700;margin-bottom:16px;color:var(--green)">Choose Donation Amount</h3>
@@ -423,7 +425,7 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
               <div style="background:#fff;border-radius:10px;padding:14px;margin-bottom:10px">
                 <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Account Number</div>
                 <div style="font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:1px">0329-4361882</div>
-                <div style="font-size:12px;color:#666;margin-top:4px">Account Title: <strong>Khansa Mumtaz</strong></div>
+                <div style="font-size:12px;color:#666;margin-top:4px">Account Title: <strong>Mumtaz Ahmad Rana</strong></div>
               </div>
               <div style="display:flex;gap:8px">
                 <button onclick="copyText('0329-4361882','jazzcash-copy')" id="jazzcash-copy" style="flex:1;background:#F57C00;color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif">📋 Copy Number</button>
@@ -442,11 +444,11 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
               </div>
               <div style="background:#fff;border-radius:10px;padding:14px;margin-bottom:10px">
                 <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Account Number</div>
-                <div style="font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:1px">0322-9638760</div>
-                <div style="font-size:12px;color:#666;margin-top:4px">Account Title: <strong>Javeria Mumtaz</strong></div>
+                <div style="font-size:22px;font-weight:800;color:#1a1a1a;letter-spacing:1px">0329-4361882</div>
+                <div style="font-size:12px;color:#666;margin-top:4px">Account Title: <strong>Mumtaz Ahmad Rana</strong></div>
               </div>
               <div style="display:flex;gap:8px">
-                <button onclick="copyText('03229638760','easypaisa-copy')" id="easypaisa-copy" style="flex:1;background:#C2185B;color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif">📋 Copy Number</button>
+                <button onclick="copyText('0329-4361882','easypaisa-copy')" id="easypaisa-copy" style="flex:1;background:#C2185B;color:#fff;border:none;padding:10px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif">📋 Copy Number</button>
               </div>
               <div style="font-size:12px;color:#888;margin-top:10px;text-align:center">After sending, click <strong>Confirm Donation</strong> below ↓</div>
             </div>
@@ -471,11 +473,11 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
                 </div>
                 <div>
                   <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">Account Number</div>
-                  <div style="font-size:15px;font-weight:700;color:#0d0d0d">02090100786883</div>
+                  <div style="font-size:15px;font-weight:700;color:#999">To be updated soon</div>
                 </div>
                 <div>
                   <div style="font-size:11px;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">IBAN</div>
-                  <div style="font-size:10px;font-weight:700;color:#1a1818">PK09 MEZN 0002 0901 0078 6883</div>
+                  <div style="font-size:10px;font-weight:700;color:#999">To be updated soon</div>
                 </div>
               </div>
               <div style="font-size:12px;color:#888;text-align:center">After transfer, click <strong>Confirm Donation</strong> below ↓</div>
@@ -514,6 +516,12 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
             </label>
           </div>
           <button class="donate-btn" id="donateFinalBtn" onclick="submitDonation()" style="opacity:0.4;pointer-events:none">🤲 Submit Donation Record</button>
+        </div>
+        <div class="trust-badges">
+          <div class="trust-badge"><span class="trust-badge-icon">🔒</span> 100% Secure</div>
+          <div class="trust-badge"><span class="trust-badge-icon">📋</span> Transparent Accounts</div>
+          <div class="trust-badge"><span class="trust-badge-icon">🕌</span> Verified Masjid</div>
+          <div class="trust-badge"><span class="trust-badge-icon">📜</span> Receipt Issued</div>
         </div>
       </div>
     </div>
@@ -919,9 +927,9 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
         <h4>Payment Details</h4>
         <ul>
           <li><a href="#">📱 JazzCash: 0329-4361882</a></li>
-          <li><a href="#">📱 EasyPaisa: 0322-9638760</a></li>
+          <li><a href="#">📱 EasyPaisa: 0329-4361882</a></li>
           <li><a href="#">🏦 Meezan Bank</a></li>
-          <li><a href="#">Bank Title: Mumtaz Ahmad Rana</a></li>
+          <li><a href="#">Title: Mumtaz Ahmad Rana</a></li>
           <li><a href="#">A/C: 02090100786883</a></li>
           <li><a href="#">IBAN: PK09 MEZN 0002 0901 0078 6883</a></li>
         </ul>
@@ -1034,8 +1042,7 @@ function submitDonation(){
   document.getElementById('progressBar').style.width = Math.min(pct,100)+'%';
   document.getElementById('raisedDisplay').textContent = '₨' + totalRaised.toLocaleString('en-PK');
   document.getElementById('percentDisplay').textContent = pct + '% reached';
-  const donorsEl = document.getElementById('totalDonorsDisplay');
-  if (donorsEl) donorsEl.textContent = totalDonors;
+  document.getElementById('totalDonorsDisplay').textContent = totalDonors;
   updateHeroStats();
 
   // Method labels
