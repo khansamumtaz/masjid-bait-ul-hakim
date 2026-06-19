@@ -1,23 +1,23 @@
-require('dotenv').config(); // Load .env file
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const https = require('https'); // built-in Node.js — no install needed
-const PRAYER_CALENDAR = require('./prayer-times-data'); // full year timetable
+const PRAYER_CALENDAR = require('./Prayer-times-data'); // full year timetable
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 const DB_FILE = path.join(__dirname, 'db.json');
 
 // ══════════════════════════════════════════
 //  EMAIL CONFIGURATION — EDIT THIS SECTION
 // ══════════════════════════════════════════
 const EMAIL_CONFIG = {
-  yourEmail:   'ranamumtaz123go@gmail.com',
-  fromEmail:   'ranamumtaz123go@gmail.com',
-  fromName:    'مسجد بیت الحاکم',
-  brevoApiKey: process.env.BREVO_API_KEY,
+  yourEmail:   'ranamumtaz123go@gmail.com', // ← receives all alerts
+  fromEmail:   'ranamumtaz123go@gmail.com', // ← must be verified in Brevo sender list
+  replyTo:     'ranamumtaz123go@gmail.com', // ← replies go here
+  fromName:    'Masjid Bait ul Hakeem',
+  brevoApiKey: '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',
 };
 // ══════════════════════════════════════════
 
@@ -37,7 +37,7 @@ function initDB() {
     const defaultData = {
       masjid: {
         name: "مسجد بیت الحاکم",
-        nameEnglish: "Masjid Bait ul Hakim",
+        nameEnglish: "Masjid Bait ul Hakeem",
         totalGoal: 8500000,
         totalRaised: 5780000,
         totalDonors: 247,
@@ -74,49 +74,6 @@ function fmtPKR(n) {
   return 'Rs.' + Number(n).toLocaleString('en-PK');
 }
 
-// Format date/time in Pakistan timezone (UTC+5)
-function formatPKTime(isoString) {
-  const date = new Date(isoString);
-  
-  // Get UTC components
-  const utcHours = date.getUTCHours();
-  const utcMinutes = date.getUTCMinutes();
-  const utcSeconds = date.getUTCSeconds();
-  const utcDate = date.getUTCDate();
-  const utcMonth = date.getUTCMonth();
-  const utcYear = date.getUTCFullYear();
-  
-  // Add 5 hours for Pakistan time (UTC+5)
-  let pkHours = utcHours + 5;
-  let pkDate = utcDate;
-  let pkMonth = utcMonth;
-  let pkYear = utcYear;
-  
-  // Handle day overflow
-  if (pkHours >= 24) {
-    pkHours -= 24;
-    pkDate += 1;
-    // Handle month overflow
-    const daysInMonth = new Date(utcYear, utcMonth + 1, 0).getDate();
-    if (pkDate > daysInMonth) {
-      pkDate = 1;
-      pkMonth += 1;
-      if (pkMonth > 11) {
-        pkMonth = 0;
-        pkYear += 1;
-      }
-    }
-  }
-  
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 
-                  'July', 'August', 'September', 'October', 'November', 'December'];
-  
-  const ampm = pkHours >= 12 ? 'PM' : 'AM';
-  const hours12 = pkHours % 12 || 12;
-  
-  return `${months[pkMonth]} ${pkDate}, ${pkYear}, ${String(hours12).padStart(2, '0')}:${String(utcMinutes).padStart(2, '0')}:${String(utcSeconds).padStart(2, '0')} ${ampm}`;
-}
-
 const methodDetails = {
   easypaisa: { icon: '[EasyPaisa]', label: 'EasyPaisa',    color: '#C2185B' },
   jazzcash:  { icon: '[JazzCash]',  label: 'JazzCash',     color: '#F57C00' },
@@ -133,6 +90,7 @@ function sendBrevoEmail(toEmail, toName, subject, htmlContent) {
         email: EMAIL_CONFIG.fromEmail
       },
       to: [{ email: toEmail, name: toName }],
+      replyTo: { email: EMAIL_CONFIG.replyTo },
       subject: subject,
       htmlContent: htmlContent
     });
@@ -154,6 +112,7 @@ function sendBrevoEmail(toEmail, toName, subject, htmlContent) {
       let data = '';
       res.on('data', chunk => data += chunk);
       res.on('end', () => {
+        console.log(`📧 Brevo response [${res.statusCode}]:`, data);
         if (res.statusCode >= 200 && res.statusCode < 300) {
           resolve(data);
         } else {
@@ -182,7 +141,7 @@ async function sendDonationAlert(donation, stats) {
   <div style="max-width:580px;margin:32px auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
     <div style="background:linear-gradient(135deg,#1a5c3a,#2d8a57);padding:28px 32px;text-align:center">
       <div style="font-size:32px;margin-bottom:8px">🕌</div>
-      <div style="font-size:22px;color:#f0d080;margin-bottom:4px">Masjid Bait ul Hakim</div>
+      <div style="font-size:22px;color:#f0d080;margin-bottom:4px">Masjid Bait ul Hakeem</div>
       <div style="font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:2px;text-transform:uppercase">New Donation Received</div>
     </div>
     <div style="background:#e8f5ee;padding:14px 32px;text-align:center;border-bottom:1px solid #d4edda">
@@ -219,7 +178,7 @@ async function sendDonationAlert(donation, stats) {
       <a href="http://localhost:3000/admin.html" style="background:#1a5c3a;color:#fff;padding:10px 24px;border-radius:8px;text-decoration:none;font-size:13px;font-weight:700;display:inline-block">Open Admin Panel</a>
     </div>
     <div style="background:#1a5c3a;padding:16px 32px;text-align:center">
-      <div style="font-size:14px;color:#f0d080">Masjid Bait ul Hakim &mdash; Lahore</div>
+      <div style="font-size:14px;color:#f0d080">Masjid Bait ul Hakeem &mdash; Lahore</div>
       <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:4px">Automated donation alert</div>
     </div>
   </div>
@@ -243,7 +202,7 @@ async function sendContactAlert(contact) {
 <body style="margin:0;padding:0;background:#f4f6f9;font-family:Arial,sans-serif">
   <div style="max-width:540px;margin:32px auto;background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08)">
     <div style="background:linear-gradient(135deg,#1a5c3a,#2d8a57);padding:24px 32px">
-      <div style="font-size:20px;color:#f0d080;margin-bottom:4px">Masjid Bait ul Hakim</div>
+      <div style="font-size:20px;color:#f0d080;margin-bottom:4px">Masjid Bait ul Hakeem</div>
       <div style="font-size:12px;color:rgba(255,255,255,0.7);letter-spacing:1.5px;text-transform:uppercase">New Contact Message</div>
     </div>
     <div style="padding:28px 32px">
@@ -252,7 +211,7 @@ async function sendContactAlert(contact) {
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Email</td><td style="padding:8px 0;font-size:14px;border-bottom:1px solid #f0f0f0"><a href="mailto:${contact.email}" style="color:#1a5c3a">${contact.email}</a></td></tr>
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Phone</td><td style="padding:8px 0;font-size:14px;border-bottom:1px solid #f0f0f0">${contact.phone || 'Not provided'}</td></tr>
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Subject</td><td style="padding:8px 0;font-size:14px;font-weight:700;border-bottom:1px solid #f0f0f0">${contact.subject || 'General'}</td></tr>
-        <tr><td style="padding:8px 0;color:#666;font-size:14px">Date & Time</td><td style="padding:8px 0;font-size:14px">${formatPKTime(contact.createdAt)}</td></tr>
+        <tr><td style="padding:8px 0;color:#666;font-size:14px">Date</td><td style="padding:8px 0;font-size:14px">${new Date(contact.createdAt).toLocaleString('en-PK')}</td></tr>
       </table>
       <div style="margin-top:20px">
         <div style="font-size:13px;font-weight:700;color:#1a5c3a;margin-bottom:8px">Message:</div>
@@ -263,7 +222,7 @@ async function sendContactAlert(contact) {
       </div>
     </div>
     <div style="background:#1a5c3a;padding:14px 32px;text-align:center">
-      <div style="font-size:11px;color:rgba(255,255,255,0.5)">Contact form alert &mdash; Masjid Bait ul Hakim, Lahore</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.5)">Contact form alert &mdash; Masjid Bait ul Hakeem, Lahore</div>
     </div>
   </div>
 </body>
@@ -291,7 +250,7 @@ async function sendDonorConfirmation(donation) {
     <div style="background:linear-gradient(135deg,#1a5c3a,#2d8a57);padding:28px 32px;text-align:center">
       <div style="font-size:36px">🤲</div>
       <div style="font-size:22px;color:#f0d080;margin:8px 0">JazakAllah Khair!</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.8)">Your donation to Masjid Bait ul Hakim has been received</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.8)">Your donation to Masjid Bait ul Hakeem has been received</div>
     </div>
     <div style="padding:28px 32px">
       <p style="font-size:14px;color:#333;line-height:1.7;margin-bottom:20px">Assalamu Alaikum <strong>${donation.name}</strong>,<br>We are grateful for your generous contribution. May Allah reward you abundantly and accept this as Sadaqah Jariyah.</p>
@@ -303,7 +262,7 @@ async function sendDonorConfirmation(donation) {
         <table style="width:100%;border-collapse:collapse">
           <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:13px;color:#888;width:40%">Donation ID</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:12px;font-weight:700;font-family:monospace">${donation.id}</td></tr>
           <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:13px;color:#888">Payment Via</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:13px;font-weight:700">${method.label}</td></tr>
-          <tr><td style="padding:7px 0;font-size:13px;color:#888">Date & Time</td><td style="padding:7px 0;font-size:13px;font-weight:700">${formatPKTime(donation.createdAt)}</td></tr>
+          <tr><td style="padding:7px 0;font-size:13px;color:#888">Date</td><td style="padding:7px 0;font-size:13px;font-weight:700">${new Date(donation.createdAt).toLocaleDateString('en-PK', {dateStyle:'full'})}</td></tr>
         </table>
       </div>
       <div style="background:#fff8e1;border-radius:10px;padding:14px;font-size:13px;color:#856404;line-height:1.6;margin-bottom:20px">
@@ -312,7 +271,7 @@ async function sendDonorConfirmation(donation) {
       <p style="font-size:13px;color:#555;font-style:italic;text-align:center;line-height:1.7">"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise."<br>&mdash; Sahih Bukhari &amp; Muslim</p>
     </div>
     <div style="background:#1a5c3a;padding:16px 32px;text-align:center">
-      <div style="font-size:14px;color:#f0d080">Masjid Bait ul Hakim &mdash; Lahore</div>
+      <div style="font-size:14px;color:#f0d080">Masjid Bait ul Hakeem &mdash; Lahore</div>
       <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px">Maraka Quarters, Multan Road, Lahore</div>
     </div>
   </div>
@@ -322,7 +281,7 @@ async function sendDonorConfirmation(donation) {
   await sendBrevoEmail(
     donation.email,
     donation.name || 'Donor',
-    `JazakAllah Khair! Your donation of ${fmtPKR(donation.amount)} to Masjid Bait ul Hakim`,
+    `JazakAllah Khair! Your donation of ${fmtPKR(donation.amount)} to Masjid Bait ul Hakeem`,
     html
   );
   console.log(`📧 Donor confirmation sent to ${donation.email}`);
@@ -517,7 +476,7 @@ app.use((req, res) => { res.status(404).json({ success: false, message: 'Route n
 // ── Start ──
 app.listen(PORT, () => {
   console.log('');
-  console.log('🕌  Masjid Bait ul Hakim — Server Running');
+  console.log('🕌  Masjid Bait ul Hakeem — Server Running');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log(`🌐  Website  → http://localhost:${PORT}`);
   console.log(`🔒  Admin    → http://localhost:${PORT}/admin.html`);
