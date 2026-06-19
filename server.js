@@ -74,6 +74,22 @@ function fmtPKR(n) {
   return 'Rs.' + Number(n).toLocaleString('en-PK');
 }
 
+// Format date/time in Pakistan timezone (UTC+5)
+function formatPKTime(isoString) {
+  const date = new Date(isoString);
+  const options = {
+    timeZone: 'Asia/Karachi',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+    hour12: true
+  };
+  return date.toLocaleString('en-PK', options);
+}
+
 const methodDetails = {
   easypaisa: { icon: '[EasyPaisa]', label: 'EasyPaisa',    color: '#C2185B' },
   jazzcash:  { icon: '[JazzCash]',  label: 'JazzCash',     color: '#F57C00' },
@@ -209,7 +225,7 @@ async function sendContactAlert(contact) {
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Email</td><td style="padding:8px 0;font-size:14px;border-bottom:1px solid #f0f0f0"><a href="mailto:${contact.email}" style="color:#1a5c3a">${contact.email}</a></td></tr>
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Phone</td><td style="padding:8px 0;font-size:14px;border-bottom:1px solid #f0f0f0">${contact.phone || 'Not provided'}</td></tr>
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Subject</td><td style="padding:8px 0;font-size:14px;font-weight:700;border-bottom:1px solid #f0f0f0">${contact.subject || 'General'}</td></tr>
-        <tr><td style="padding:8px 0;color:#666;font-size:14px">Date</td><td style="padding:8px 0;font-size:14px">${new Date(contact.createdAt).toLocaleString('en-PK')}</td></tr>
+        <tr><td style="padding:8px 0;color:#666;font-size:14px">Date & Time</td><td style="padding:8px 0;font-size:14px">${formatPKTime(contact.createdAt)}</td></tr>
       </table>
       <div style="margin-top:20px">
         <div style="font-size:13px;font-weight:700;color:#1a5c3a;margin-bottom:8px">Message:</div>
@@ -260,7 +276,7 @@ async function sendDonorConfirmation(donation) {
         <table style="width:100%;border-collapse:collapse">
           <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:13px;color:#888;width:40%">Donation ID</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:12px;font-weight:700;font-family:monospace">${donation.id}</td></tr>
           <tr><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:13px;color:#888">Payment Via</td><td style="padding:7px 0;border-bottom:1px solid #eee;font-size:13px;font-weight:700">${method.label}</td></tr>
-          <tr><td style="padding:7px 0;font-size:13px;color:#888">Date</td><td style="padding:7px 0;font-size:13px;font-weight:700">${new Date(donation.createdAt).toLocaleDateString('en-PK', {dateStyle:'full'})}</td></tr>
+          <tr><td style="padding:7px 0;font-size:13px;color:#888">Date & Time</td><td style="padding:7px 0;font-size:13px;font-weight:700">${formatPKTime(donation.createdAt)}</td></tr>
         </table>
       </div>
       <div style="background:#fff8e1;border-radius:10px;padding:14px;font-size:13px;color:#856404;line-height:1.6;margin-bottom:20px">
