@@ -5,7 +5,7 @@ const cors = require('cors');
 const https = require('https'); // built-in Node.js — no install needed
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const DB_FILE = path.join(__dirname, 'db.json');
 
 // ══════════════════════════════════════════
