@@ -46,7 +46,7 @@ nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(26,92,58,0.97);
 .mobile-menu a:last-child{border-bottom:none;color:var(--gold-light)}
 
 /* ── HERO ── */
-#hero{min-height:100vh;background:linear-gradient(160deg,#0f3320 0%,#1a5c3a 40%,#0f3320 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+#hero{min-height:100vh;min-height:100svh;background:linear-gradient(160deg,#0f3320 0%,#1a5c3a 40%,#0f3320 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
 .hero-geo{position:absolute;inset:-80px;opacity:.09;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 20v40L40 80 0 60V20z' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Cpath d='M40 10L70 25v30L40 70 10 55V25z' fill='none' stroke='%23c9a84c' stroke-width='.5'/%3E%3C/svg%3E");background-size:80px 80px;animation:geoPan 26s linear infinite}
 @keyframes geoPan{0%{background-position:0 0}100%{background-position:160px 160px}}
 .hero-content{position:relative;z-index:1;max-width:800px}
@@ -301,6 +301,7 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
   .ayat-card{padding:24px}
   .ayat-player{max-width:100%}
   .pm-tabs{grid-template-columns:1fr 1fr}
+  .reveal,.reveal-scale{opacity:1!important;transform:none!important}
 }
 
 
@@ -538,10 +539,10 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
     <h2 class="section-title ayat-main-title reveal">Verse of the Day</h2>
     <div class="divider reveal" style="margin:16px auto 32px"></div>
 
-    <div class="ayat-card reveal-scale" id="ayatCard">
+    <div class="ayat-card" id="ayatCard">
       <div class="ayat-glare"></div>
       <!-- Loading state -->
-      <div class="ayat-loading" id="ayatLoading" style="padding:32px 0;font-size:15px">
+      <div class="ayat-loading" id="ayatLoading" style="padding:32px 0;font-size:15px;opacity:1">
         <div style="font-size:32px;margin-bottom:12px">📿</div>
         <div>Loading today's ayat…</div>
       </div>
@@ -1113,7 +1114,7 @@ window.addEventListener('scroll',function(){
         io.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.05, rootMargin: '0px 0px 0px 0px' });
+  }, { threshold: 0.18, rootMargin: '0px 0px -40px 0px' });
   targets.forEach(t => io.observe(t));
 })();
 
