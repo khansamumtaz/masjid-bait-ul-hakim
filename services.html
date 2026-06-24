@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>مسجد بیت الحاکم — Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Noto+Nastaliq+Urdu:wght@400;600;700&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --gold:#c9a84c;
+  --gold-light:#f0d080;
+  --gold-dark:#8b6914;
+  --green:#1a5c3a;
+  --green-light:#2d8a57;
+  --green-pale:#e8f5ee;
+  --cream:#faf8f2;
+  --white:#ffffff;
+  --text:#1a1a1a;
+  --text-muted:#555;
+  --border:#e0d8c0;
+  --shadow:0 4px 24px rgba(0,0,0,0.08);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Nunito',sans-serif;color:var(--text);background:var(--cream);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;width:100%;z-index:1000;background:rgba(26,92,58,0.97);backdrop-filter:blur(8px);border-bottom:1px solid rgba(201,168,76,0.3);transition:all .3s}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-brand .arabic{font-family:'Amiri',serif;font-size:22px;color:var(--gold-light);line-height:1}
+.nav-brand .english{font-size:11px;color:rgba(255,255,255,0.6);letter-spacing:1.5px;text-transform:uppercase}
+.nav-links{display:flex;gap:4px;list-style:none}
+.nav-links a{color:rgba(255,255,255,0.85);text-decoration:none;font-size:14px;font-weight:600;padding:8px 14px;border-radius:6px;transition:all .2s;letter-spacing:.3px}
+.nav-links a:hover{color:var(--gold-light);background:rgba(255,255,255,0.08)}
+.nav-donate-btn{background:var(--gold);color:#1a1a1a!important;font-weight:700!important;padding:9px 20px!important;border-radius:20px!important}
+.nav-donate-btn:hover{background:var(--gold-light)!important;color:#111!important}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:var(--gold-light);border-radius:2px;transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:68px;left:0;right:0;background:var(--green);padding:16px 24px;border-bottom:2px solid var(--gold);z-index:999}
+.mobile-menu.open{display:block}
+.mobile-menu a{display:block;color:rgba(255,255,255,0.9);text-decoration:none;font-size:15px;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.1)}
+.mobile-menu a:last-child{border-bottom:none;color:var(--gold-light)}
+
+/* ── HERO ── */
+#hero{min-height:100vh;background:linear-gradient(160deg,#0f3320 0%,#1a5c3a 40%,#0f3320 100%);display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+.hero-geo{position:absolute;inset:0;opacity:.07;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 20v40L40 80 0 60V20z' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Cpath d='M40 10L70 25v30L40 70 10 55V25z' fill='none' stroke='%23c9a84c' stroke-width='.5'/%3E%3C/svg%3E");background-size:80px 80px}
+.hero-content{position:relative;z-index:1;max-width:800px}
+.bismillah{font-family:'Amiri',serif;font-size:clamp(28px,5vw,48px);color:var(--gold-light);letter-spacing:2px;margin-bottom:20px;text-shadow:0 2px 20px rgba(201,168,76,0.3)}
+.hero-arabic{font-family:'Amiri',serif;font-size:clamp(36px,7vw,72px);color:#fff;line-height:1.2;margin-bottom:8px;text-shadow:0 2px 30px rgba(0,0,0,0.4)}
+.hero-english{font-size:clamp(13px,2vw,18px);color:var(--gold-light);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;font-weight:300}
+.hero-tagline{font-size:clamp(15px,2.5vw,20px);color:rgba(255,255,255,0.75);max-width:520px;margin:0 auto 40px;line-height:1.6;font-weight:300}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{background:var(--gold);color:#1a1a1a;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:700;font-size:15px;letter-spacing:.5px;transition:all .3s;border:none;cursor:pointer}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,168,76,0.4)}
+.btn-outline{background:transparent;color:#fff;padding:14px 32px;border-radius:30px;text-decoration:none;font-weight:600;font-size:15px;letter-spacing:.5px;border:2px solid rgba(255,255,255,0.4);transition:all .3s;cursor:pointer}
+.btn-outline:hover{background:rgba(255,255,255,0.1);border-color:#fff;transform:translateY(-2px)}
+.hero-stats{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;margin-top:64px;padding-top:40px;border-top:1px solid rgba(201,168,76,0.2)}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:clamp(28px,4vw,42px);font-weight:800;color:var(--gold-light);line-height:1}
+.hero-stat-label{font-size:12px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+
+/* ── SECTIONS ── */
+section{padding:80px 24px}
+.section-inner{max-width:1200px;margin:0 auto}
+.section-label{font-size:11px;text-transform:uppercase;letter-spacing:3px;color:var(--gold-dark);font-weight:700;margin-bottom:10px}
+.section-title{font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--green);margin-bottom:16px;line-height:1.2}
+.section-title-arabic{font-family:'Amiri',serif;font-size:clamp(22px,3vw,32px);color:var(--gold-dark);margin-bottom:24px}
+.section-desc{font-size:16px;color:var(--text-muted);max-width:600px;line-height:1.8}
+.divider{width:60px;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:2px;margin:16px 0 32px}
+
+/* ── ABOUT ── */
+#about{background:#fff}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-img-stack{position:relative;width:100%;max-width:420px;margin:0 auto}
+.about-img-main{position:relative;width:100%;aspect-ratio:4/5;border-radius:16px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.18)}
+.about-img-main img{width:100%;height:100%;display:block;object-fit:contain;object-position:center}
+.ai-made-badge{position:absolute;bottom:12px;right:12px;background:rgba(0,0,0,0.6);backdrop-filter:blur(4px);color:#fff;font-size:11px;font-weight:600;letter-spacing:.3px;padding:5px 12px;border-radius:20px}
+.mosque-illustration{width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.about-features{display:flex;flex-direction:column;gap:16px;margin-top:32px}
+.about-feature{display:flex;align-items:flex-start;gap:14px}
+.about-feature-icon{width:40px;height:40px;background:var(--green-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.about-feature-text h4{font-size:15px;font-weight:700;color:var(--green);margin-bottom:3px}
+.about-feature-text p{font-size:13px;color:var(--text-muted);line-height:1.6}
+
+/* ── FUND ── */
+#fund{background:var(--cream)}
+.fund-header{text-align:center;margin-bottom:48px}
+.fund-header .section-desc{margin:0 auto}
+.fund-box{background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);max-width:700px;margin:0 auto 40px}
+.fund-total-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px}
+.fund-total-label{font-size:14px;color:var(--text-muted);font-weight:600}
+.fund-total-val{font-size:15px;font-weight:700}
+.progress-track{height:20px;background:#eee;border-radius:10px;overflow:hidden;margin-bottom:24px}
+.progress-bar{height:100%;background:linear-gradient(90deg,var(--green),var(--green-light));border-radius:10px;transition:width 1.5s ease;position:relative}
+.progress-bar::after{content:'';position:absolute;top:3px;left:8px;right:8px;height:6px;background:rgba(255,255,255,0.3);border-radius:3px}
+.fund-stat-card{background:var(--cream);border-radius:12px;padding:18px;text-align:center}
+.fund-stat-val{font-size:22px;font-weight:800;color:var(--green);margin-bottom:4px}
+.fund-stat-label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px}
+.donate-form{display:flex;flex-direction:column;gap:16px}
+.amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.amount-btn{padding:12px 8px;border:2px solid var(--border);border-radius:10px;background:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;color:var(--text)}
+.amount-btn:hover,.amount-btn.active{border-color:var(--green);background:var(--green-pale);color:var(--green)}
+.custom-input{padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;width:100%;transition:border .2s;outline:none}
+.custom-input:focus{border-color:var(--green)}
+.donor-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+select.custom-input{cursor:pointer}
+.donate-btn{background:var(--green);color:#fff;border:none;padding:16px;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif;letter-spacing:.5px}
+.donate-btn:hover{background:var(--green-light);transform:translateY(-1px);box-shadow:0 6px 20px rgba(26,92,58,0.3)}
+.pm-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
+.pm-tab{background:var(--cream);border:1.5px solid var(--border);color:var(--text-muted);border-radius:10px;padding:10px 6px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;line-height:1.3}
+.pm-tab:hover{border-color:var(--green);color:var(--green)}
+.pm-tab.active{background:var(--green);border-color:var(--green);color:#fff}
+.pm-panel{display:none;background:var(--cream);border:1.5px solid var(--border);border-radius:12px;padding:20px;flex-direction:column;gap:10px;margin-bottom:4px}
+.pm-panel.active{display:flex}
+.pm-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:10px 14px;background:#fff;border-radius:8px;border:1px solid var(--border)}
+.pm-lbl{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;white-space:nowrap}
+.pm-val{font-size:14px;font-weight:700;color:var(--green);text-align:right}
+.pm-muted{color:#bbb!important;font-weight:500!important}
+.pm-copy{background:var(--green);color:#fff;border:none;padding:11px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Nunito',sans-serif;transition:background .2s;margin-top:4px}
+.pm-copy:hover{background:var(--green-light)}
+.trust-badges{display:flex;justify-content:center;gap:24px;margin-top:16px;flex-wrap:wrap}
+.trust-badge{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted)}
+.trust-badge-icon{font-size:16px}
+
+/* ── GALLERY SLIDESHOW ── */
+#progress{background:#fff}
+.slideshow-wrap{position:relative;max-width:900px;margin:0 auto;border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,0.15);background:#000}
+.slideshow-track{display:flex;transition:transform 0.7s cubic-bezier(.4,0,.2,1)}
+.slide{min-width:100%;position:relative}
+.slide img{width:100%;height:auto;max-height:80vh;object-fit:contain;display:block;background:#000}
+.slide-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(0deg,rgba(10,45,28,0.92) 0%,transparent 100%);padding:40px 28px 22px;color:#fff}
+.slide-caption h4{font-size:17px;font-weight:700;margin-bottom:4px;color:var(--gold-light)}
+.slide-caption p{font-size:13px;color:rgba(255,255,255,0.75)}
+.slide-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.18);backdrop-filter:blur(4px);border:2px solid rgba(255,255,255,0.35);color:#fff;width:46px;height:46px;border-radius:50%;font-size:20px;cursor:pointer;transition:all .25s;display:flex;align-items:center;justify-content:center;z-index:10}
+.slide-btn:hover{background:var(--gold);border-color:var(--gold);color:#111}
+.slide-btn.prev{left:16px}
+.slide-btn.next{right:16px}
+.slide-dots{display:flex;justify-content:center;gap:8px;margin-top:20px;flex-wrap:wrap}
+.dot{width:10px;height:10px;border-radius:50%;background:var(--border);cursor:pointer;transition:all .3s;border:none;padding:0}
+.dot.active{background:var(--green);transform:scale(1.3)}
+.slide-counter{text-align:center;margin-top:10px;font-size:13px;color:var(--text-muted);font-weight:600}
+.slide-thumbs{display:flex;gap:10px;margin-top:20px;overflow-x:auto;padding-bottom:4px;scroll-snap-type:x mandatory}
+.slide-thumb{min-width:80px;height:56px;border-radius:8px;overflow:hidden;cursor:pointer;border:3px solid transparent;transition:all .25s;scroll-snap-align:start;flex-shrink:0}
+.slide-thumb img{width:100%;height:100%;object-fit:cover}
+.slide-thumb.active{border-color:var(--green);box-shadow:0 0 0 2px var(--green-pale)}
+
+
+
+/* ── PRAYER TIMES ── */
+
+.pa-icon{font-size:32px;flex-shrink:0}
+.pa-text h4{font-size:15px;font-weight:700;color:var(--gold-light);margin-bottom:4px}
+.pa-text p{font-size:13px;color:rgba(255,255,255,0.7);line-height:1.6}
+
+/* ── MAP & CONTACT ── */
+#contact{background:#fff}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.map-container{border-radius:16px;overflow:hidden;box-shadow:var(--shadow);position:relative;}
+.map-placeholder{text-align:center}
+.map-placeholder p{font-size:14px;color:var(--text-muted);margin-top:8px}
+.map-pin{font-size:48px;animation:pin-bounce 2s ease infinite}
+@keyframes pin-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.map-directions-btn{display:inline-block;margin-top:16px;background:var(--green);color:#fff;padding:10px 24px;border-radius:20px;text-decoration:none;font-size:13px;font-weight:700;transition:all .2s}
+.map-directions-btn:hover{background:var(--green-light)}
+.contact-info{margin-bottom:28px}
+.contact-info-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;padding:16px;background:var(--cream);border-radius:12px}
+.ci-icon{width:40px;height:40px;background:var(--green-pale);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ci-text h4{font-size:13px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+.ci-text p{font-size:14px;color:var(--text-muted);line-height:1.5}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.cf-input{padding:13px 16px;border:2px solid var(--border);border-radius:10px;font-size:14px;font-family:'Nunito',sans-serif;width:100%;transition:border .2s;outline:none;resize:none;background:#fff}
+.cf-input:focus{border-color:var(--green)}
+.cf-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cf-btn{background:var(--green);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;font-family:'Nunito',sans-serif}
+.cf-btn:hover{background:var(--green-light)}
+.cf-success{display:none;background:#d4edda;color:#155724;padding:14px;border-radius:10px;font-size:14px;font-weight:600;text-align:center;margin-top:8px}
+
+/* ── SERVICES ── */
+#services{background:var(--cream)}
+.services-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:40px}
+.service-card{background:#fff;border-radius:16px;padding:28px;box-shadow:var(--shadow);transition:transform .3s;border-bottom:3px solid transparent}
+.service-card:hover{transform:translateY(-4px);border-bottom-color:var(--gold)}
+.service-icon{font-size:36px;margin-bottom:16px}
+.service-card h3{font-size:17px;font-weight:700;color:var(--green);margin-bottom:8px}
+.service-card p{font-size:13px;color:var(--text-muted);line-height:1.7}
+
+/* ── FOOTER ── */
+footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
+.footer-inner{max-width:1200px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.footer-brand .arabic{font-family:'Amiri',serif;font-size:28px;color:var(--gold-light);display:block;margin-bottom:4px}
+.footer-brand .english{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4)}
+.footer-brand p{font-size:13px;line-height:1.7;margin-top:16px;max-width:280px}
+.footer-col h4{font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold-light);margin-bottom:16px}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:10px}
+.footer-col a{color:rgba(255,255,255,0.6);text-decoration:none;font-size:14px;transition:color .2s}
+.footer-col a:hover{color:var(--gold-light)}
+.social-links{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
+.social-link{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;text-decoration:none;color:rgba(255,255,255,0.7)}
+.social-link:hover{background:var(--gold);color:#111}
+.footer-bottom{text-align:center;padding-top:24px;font-size:12px;color:rgba(255,255,255,0.3)}
+.footer-bottom span{color:var(--gold-light)}
+
+
+
+/* ── DONATION SUCCESS ── */
+.donation-success{display:none;text-align:center;padding:32px;background:var(--green-pale);border-radius:16px;border:2px solid var(--green)}
+.donation-success.show{display:block}
+.donation-success h3{font-size:22px;font-weight:800;color:var(--green);margin-bottom:8px}
+.donation-success p{color:var(--text-muted);font-size:14px}
+
+/* ── STICKY DONATE ── */
+.sticky-donate{position:fixed;bottom:24px;right:24px;background:var(--gold);color:#111;border:none;padding:14px 24px;border-radius:30px;font-size:14px;font-weight:800;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,0.5);z-index:500;transition:all .3s;font-family:'Nunito',sans-serif;letter-spacing:.5px}
+.sticky-donate:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 28px rgba(201,168,76,0.6)}
+
+/* ── MODAL ── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:2000;align-items:center;justify-content:center;padding:20px}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:20px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto;padding:32px;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;background:#eee;border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;font-family:'Nunito',sans-serif}
+.modal-close:hover{background:#ddd}
+.modal-title-arabic{font-family:'Amiri',serif;font-size:24px;color:var(--green);margin-bottom:4px}
+.modal-title{font-size:18px;font-weight:800;color:var(--text);margin-bottom:20px}
+
+/* ── GALLERY LIGHTBOX ── */
+.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:3000;align-items:center;justify-content:center}
+.lightbox.open{display:flex}
+.lb-content{max-width:800px;width:100%;padding:20px;text-align:center;position:relative}
+.lb-img{width:100%;max-height:70vh;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:80px;background:rgba(255,255,255,0.05)}
+.lb-caption{color:rgba(255,255,255,0.7);margin-top:12px;font-size:14px}
+.lb-close{position:absolute;top:-8px;right:-8px;background:var(--gold);border:none;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px;color:#111;font-weight:700;font-family:'Nunito',sans-serif}
+
+/* ── LIVE BAYANAAT BANNER ── */
+.live-banner{display:none;position:fixed;top:68px;width:100%;z-index:999;background:linear-gradient(90deg,#c0392b,#e74c3c);color:#fff;padding:10px 24px;text-align:center;font-size:14px;font-weight:700;box-shadow:0 2px 12px rgba(0,0,0,0.2)}
+.live-banner.show{display:block}
+.live-banner .pulse-dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#fff;margin-right:8px;animation:pulse 1.4s infinite}
+.live-banner a{color:#fff;text-decoration:underline;font-weight:800;margin-left:10px}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* ── DAILY AYAT ── */
+#ayat{background:linear-gradient(135deg,#fdf8ef,#f5efe0);color:var(--text)}
+#ayat .section-label{color:var(--gold-dark)}
+#ayat .section-title{color:var(--green)}
+.ayat-main-title{font-weight:800;letter-spacing:-0.5px;color:var(--green);-webkit-text-fill-color:initial;background:none;margin-bottom:4px}
+.ayat-card{background:#fff;border:1.5px solid rgba(201,168,76,0.35);border-radius:20px;padding:40px;text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.06)}
+.ayat-arabic{font-family:'Amiri',serif;font-size:clamp(24px,3.4vw,34px);line-height:2;color:var(--green);direction:rtl;margin-bottom:20px}
+.ayat-english{font-size:clamp(14px,1.6vw,17px);line-height:1.8;color:#3a3a3a;max-width:680px;margin:0 auto 18px;font-style:italic}
+.ayat-translation{font-family:'Noto Nastaliq Urdu',serif;font-size:20px;line-height:2.4;color:#555;max-width:700px;margin:0 auto 20px;direction:rtl;text-align:center}
+.ayat-ref{font-size:13px;color:var(--gold-dark);letter-spacing:1px;text-transform:uppercase;margin-bottom:28px;font-weight:700}
+.ayat-audio-row{display:flex;flex-direction:column;align-items:center;gap:12px}
+.ayat-player{background:var(--cream);border:1.5px solid rgba(201,168,76,0.4);border-radius:14px;padding:14px 20px;display:flex;align-items:center;gap:14px;width:100%;max-width:480px}
+.ayat-play-btn{background:var(--green);color:#fff;border:none;width:42px;height:42px;border-radius:50%;font-size:18px;cursor:pointer;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:background .2s}
+.ayat-play-btn:hover{background:var(--green-light)}
+.ayat-progress-wrap{flex:1;display:flex;flex-direction:column;gap:6px}
+.ayat-progress{width:100%;height:4px;-webkit-appearance:none;appearance:none;background:rgba(0,0,0,0.12);border-radius:2px;cursor:pointer;outline:none}
+.ayat-progress::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;border-radius:50%;background:var(--green);cursor:pointer}
+.ayat-progress::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--green);border:none;cursor:pointer}
+.ayat-time{font-size:11px;color:var(--text-muted);text-align:right}
+.ayat-loading{color:var(--text-muted);font-size:14px}
+
+/* ── RECORDED BAYANAAT ── */
+.bayanaat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:40px}
+.bayan-card{background:#fff;border-radius:16px;padding:24px;box-shadow:var(--shadow);border-bottom:3px solid var(--gold)}
+.bayan-card h4{font-size:17px;color:var(--green);margin-bottom:4px}
+.bayan-speaker{font-size:13px;color:var(--gold-dark);font-weight:700;margin-bottom:6px}
+.bayan-date{font-size:12px;color:var(--text-muted);margin-bottom:14px}
+.bayan-desc{font-size:13px;color:var(--text-muted);margin-bottom:14px;line-height:1.5}
+.bayan-card audio,.bayan-card video{width:100%;border-radius:8px}
+.bayan-empty{text-align:center;color:var(--text-muted);grid-column:1/-1;padding:40px 0}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .about-grid,.contact-grid{grid-template-columns:1fr}
+  .about-img-stack{margin-bottom:20px}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .hero-stats{gap:24px}
+  .amount-grid{grid-template-columns:repeat(2,1fr)}
+  .donor-fields,.cf-row{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .ayat-card{padding:24px}
+  .ayat-player{max-width:100%}
+  .pm-tabs{grid-template-columns:1fr 1fr}
+}
+
+
+.nav-links a[href="services.html"],
+.mobile-menu a[href="services.html"] {
+  color: var(--gold-light) !important;
+  background: rgba(255,255,255,0.1);
+  border-radius: 6px;
+}
+
+@media(max-width:600px){
+  .svc-block{grid-template-columns:1fr !important}
+  .svc-block > div:first-child{width:60px !important;height:60px !important;font-size:28px !important}
+}
+
+/* ── HERO ANIMATIONS ── */
+@keyframes fadeSlideDown{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeSlideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shimmer{0%,100%{opacity:.07}50%{opacity:.13}}
+@keyframes floatIcon{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-6px) scale(1.05)}}
+@keyframes countUp{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
+@keyframes borderGlow{0%,100%{box-shadow:0 4px 24px rgba(0,0,0,0.08)}50%{box-shadow:0 8px 32px rgba(26,92,58,0.18),0 0 0 2px rgba(201,168,76,0.15)}}
+
+.hero-geo{animation:shimmer 4s ease-in-out infinite}
+.hero-arabic-title{animation:fadeSlideDown .7s ease both}
+.hero-h1{animation:fadeSlideDown .7s .15s ease both;opacity:0;animation-fill-mode:forwards}
+.hero-p{animation:fadeSlideUp .7s .3s ease both;opacity:0;animation-fill-mode:forwards}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-32px);transition:opacity .6s ease,transform .6s ease}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+
+/* ── SERVICE BLOCKS ── */
+.svc-block{transition:transform .3s ease, box-shadow .3s ease}
+.svc-block:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(26,92,58,0.14)!important}
+.svc-icon-wrap{transition:transform .4s ease}
+.svc-block:hover .svc-icon-wrap{animation:floatIcon .8s ease infinite}
+
+/* ── TAG PILLS ── */
+.tag-pill{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;padding:7px 16px;border-radius:20px;transition:transform .2s, box-shadow .2s}
+.tag-pill:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,0.1)}
+
+/* ── PRAYER TIME CARDS ── */
+.prayer-card{background:var(--green-pale);border-radius:12px;padding:14px 16px;border-left:4px solid var(--green);transition:all .25s ease;cursor:default}
+.prayer-card:hover{background:var(--green);border-left-color:var(--gold)}
+.prayer-card:hover .prayer-name{color:var(--gold-light)!important}
+.prayer-card:hover .prayer-time{color:#fff!important}
+
+/* ── STATS ROW ── */
+.svc-stats{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.svc-stat{text-align:center;background:var(--cream);border-radius:14px;padding:16px 22px;flex:1;min-width:100px;border:1px solid var(--border);transition:all .25s}
+.svc-stat:hover{background:var(--green);border-color:var(--green)}
+.svc-stat:hover .stat-num,.svc-stat:hover .stat-lbl{color:#fff!important}
+.stat-num{font-size:26px;font-weight:800;color:var(--green);line-height:1}
+.stat-lbl{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.8px;margin-top:4px}
+
+/* ── RAMADAN MINI CARDS ── */
+.ram-card{border-radius:12px;padding:14px 16px;text-align:center;transition:transform .25s}
+.ram-card:hover{transform:scale(1.04)}
+
+/* ── SECTION NUMBER BADGE ── */
+.svc-num{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:var(--gold);color:#111;font-size:12px;font-weight:800;flex-shrink:0;margin-bottom:8px}
+
+/* ── CONTACT CALLOUT ── */
+.callout-box{border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:14px;transition:transform .25s}
+.callout-box:hover{transform:translateY(-2px)}
+</style>
+</head>
+<body>
+
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-brand">
+      <div>
+        <div class="arabic">مسجد بیت الحاکم</div>
+        <div class="english">Masjid Bait ul Hakim</div>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="donate.html">Donate</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="bayanaat.html">Bayanaat</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="donate.html" class="nav-donate-btn">💛 Donate Now</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+<div class="live-banner" id="liveBanner">
+  <span class="pulse-dot"></span><span id="liveBannerText">A Bayan is live now</span><a href="bayanaat.html">Listen →</a>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" onclick="closeMenu()">Home</a>
+  <a href="about.html" onclick="closeMenu()">About</a>
+  <a href="donate.html" onclick="closeMenu()">Donate</a>
+  <a href="gallery.html" onclick="closeMenu()">Gallery</a>
+  <a href="services.html" onclick="closeMenu()">Services</a>
+  <a href="bayanaat.html" onclick="closeMenu()">Bayanaat</a>
+  <a href="contact.html" onclick="closeMenu()">Contact</a>
+  <a href="donate.html" onclick="closeMenu()">💛 Donate Now</a>
+</div>
+
+<!-- ── SERVICES HERO ── -->
+<section style="background:linear-gradient(160deg,#0f3320 0%,#1a5c3a 40%,#0f3320 100%);padding:110px 24px 70px;text-align:center;position:relative;overflow:hidden">
+  <div class="hero-geo" style="position:absolute;inset:0;background-image:url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cpath d='M40 0L80 20v40L40 80 0 60V20z' fill='none' stroke='%23c9a84c' stroke-width='1'/%3E%3Cpath d='M40 10L70 25v30L40 70 10 55V25z' fill='none' stroke='%23c9a84c' stroke-width='.5'/%3E%3C/svg%3E\");background-size:80px 80px"></div>
+  <div style="position:relative;z-index:1;max-width:720px;margin:0 auto">
+    <div class="hero-arabic-title" style="font-family:'Amiri',serif;font-size:clamp(22px,4vw,36px);color:var(--gold-light);margin-bottom:12px">خدمات مسجد</div>
+    <h1 class="hero-h1" style="font-size:clamp(30px,5vw,52px);font-weight:800;color:#fff;margin-bottom:16px;line-height:1.15">Our Services</h1>
+    <p class="hero-p" style="font-size:clamp(14px,2vw,18px);color:rgba(255,255,255,0.72);line-height:1.7;max-width:560px;margin:0 auto">Masjid Bait ul Hakim serves the community with spiritual, educational, and welfare programs — all in the way of Allah.</p>
+  </div>
+</section>
+
+<!-- ── SERVICES DETAIL ── -->
+<section id="services" style="background:var(--cream);padding:72px 24px">
+  <div class="section-inner" style="max-width:1100px">
+
+    <div class="section-label reveal">What We Offer</div>
+    <h2 class="section-title reveal">Masjid Services</h2>
+    <p class="section-desc reveal" style="margin-bottom:8px">Every service we provide is rooted in the Sunnah and aimed at strengthening our community's connection with Allah and with each other.</p>
+    <div class="divider reveal"></div>
+
+    <!-- ── 1. FIVE DAILY PRAYERS ── -->
+    <div id="svc-salah" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:var(--green-pale);border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">🕌</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">پنج وقتہ نماز</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Five Daily Prayers (Salah)</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          All five Fard prayers — Fajr, Zuhr, Asr, Maghrib, and Isha — are offered in congregation every day. Jumu'ah is held with a weekly Khutbah by our resident Imam. Sisters are welcome in the designated prayer area.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 2. QURAN EDUCATION ── -->
+    <div id="svc-quran" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:#fef9e7;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">📖</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">تعلیمِ قرآن</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Quran Education</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          Classes run every evening after Maghrib for children aged 5–15, taught by qualified Hafiz-e-Quran teachers. We offer three tracks — Nazira, Tajweed, and Hifz — in a warm, encouraging environment.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 3. NIKAH SERVICES ── -->
+    <div id="svc-nikah" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:#fdf0f5;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">💍</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">نکاح خدمات</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Nikah Services</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          Nikah ceremonies are conducted by our certified scholars in full accordance with Shariah — simple, dignified, and Sunnah-based. The service includes Khutbat-un-Nikah, Ijab &amp; Qabool, Mahr agreement, and Du'a for the couple.
+        </p>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+          <div style="background:linear-gradient(135deg,#fdf0f5,#fce4ee);border-radius:12px;padding:16px;border:1px solid rgba(200,100,140,0.15)">
+            <div style="font-size:12px;color:#b5547a;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px">What's included</div>
+            <ul style="list-style:none;font-size:14px;color:var(--text-muted);line-height:2">
+              <li>✦ Khutbat-un-Nikah</li>
+              <li>✦ Formal Ijab &amp; Qabool</li>
+              <li>✦ Mahr agreement</li>
+              <li>✦ Du'a for the couple</li>
+            </ul>
+          </div>
+          <div style="background:linear-gradient(135deg,#fdf0f5,#fce4ee);border-radius:12px;padding:16px;border:1px solid rgba(200,100,140,0.15)">
+            <div style="font-size:12px;color:#b5547a;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:6px">Requirements</div>
+            <ul style="list-style:none;font-size:14px;color:var(--text-muted);line-height:2">
+              <li>✦ Book 7 days in advance</li>
+              <li>✦ CNIC copies of both parties</li>
+              <li>✦ Two male witnesses</li>
+              <li>✦ Contact via WhatsApp</li>
+            </ul>
+          </div>
+        </div>
+        <div class="callout-box" style="background:linear-gradient(135deg,#fdf8ef,#f5efe0);border:1px solid rgba(201,168,76,0.3)">
+          <div style="font-size:28px">📞</div>
+          <div><div style="font-size:13px;font-weight:700;color:var(--gold-dark);margin-bottom:3px">Book a Nikah</div><div style="font-size:14px;color:var(--text-muted)">WhatsApp: <strong style="color:var(--green)">0321-4022560</strong> — at least 7 days in advance.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 4. ISLAMIC LECTURES ── -->
+    <div id="svc-dars" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:#eef4fb;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">🎓</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">دینی بیانات و دروس</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Islamic Lectures & Dars</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          Structured Dars after Fajr and Isha every week, covering Tafseer, Hadith, Fiqh, and the Seerah. Monthly special programs feature renowned scholars — open to men, women, and youth. Past lectures available in our Bayanaat section.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 5. COMMUNITY SUPPORT ── -->
+    <div id="svc-welfare" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:#edfaf3;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">🤝</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">فلاحِ عامہ</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Community Support & Welfare</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          Our welfare committee distributes Zakat and Sadaqah to deserving families and runs a food assistance program providing ration packages to those in need. Scholarship support for underprivileged students is also available through donor contributions.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 6. RAMADAN PROGRAMS ── -->
+    <div id="svc-ramadan" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:#f5f0ff;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">🌙</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">رمضان المبارک پروگرام</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Ramadan Programs</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          Masjid Bait ul Hakim runs a full Ramadan programme including daily Iftaar for all, nightly Taraweeh with full Quran khatam, I'tikaf in the last ten nights, and a special Laylat-ul-Qadr program on the 27th night.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 7. JANAZAH SERVICES ── -->
+    <div id="svc-janazah" class="svc-block reveal" style="background:#fff;border-radius:20px;padding:40px;box-shadow:var(--shadow);margin-bottom:32px;display:grid;grid-template-columns:80px 1fr;gap:32px;align-items:start">
+      <div class="svc-icon-wrap" style="width:80px;height:80px;background:#f0f4f8;border-radius:18px;display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0">🕊️</div>
+      <div>
+        <div style="font-family:'Noto Nastaliq Urdu',serif;font-size:15px;color:var(--gold-dark);direction:rtl;margin-bottom:4px">نمازِ جنازہ</div>
+        <h3 style="font-size:24px;font-weight:800;color:var(--green);margin-bottom:10px">Janazah (Funeral) Services</h3>
+        <p style="font-size:15px;color:var(--text-muted);line-height:1.8;margin-bottom:20px">
+          Salat-ul-Janazah is offered at the masjid for community members, led by our Imam. We also guide families on Islamic burial rites — ghusl, kafan, and the procession — in accordance with the Sunnah. Participation in Janazah is a Fard Kifayah.
+        </p>
+        <div class="callout-box" style="background:#f0f4f8;border:1px solid #d5dde6">
+          <div style="font-size:28px">📞</div>
+          <div><div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:3px">Available any time</div><div style="font-size:14px;color:var(--text-muted)">Contact immediately on WhatsApp <strong style="color:var(--green)">0321-4022560</strong> — the Imam will assist the family without delay.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CTA ── -->
+    <div class="reveal" style="background:linear-gradient(135deg,var(--green),var(--green-light));border-radius:20px;padding:48px 40px;text-align:center;margin-top:16px">
+      <div style="font-family:'Amiri',serif;font-size:28px;color:var(--gold-light);margin-bottom:8px">وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ</div>
+      <p style="color:rgba(255,255,255,0.8);font-size:14px;font-style:italic;margin-bottom:20px">"And cooperate in righteousness and piety." — Surah Al-Ma'idah 5:2</p>
+      <h3 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:10px">Be Part of This Community</h3>
+      <p style="color:rgba(255,255,255,0.75);font-size:15px;max-width:500px;margin:0 auto 28px;line-height:1.7">Every donation helps us expand these services and build a place of worship that will serve generations to come.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+        <a href="donate.html" style="background:var(--gold);color:#111;padding:13px 28px;border-radius:30px;text-decoration:none;font-size:15px;font-weight:700;transition:all .3s" onmouseover="this.style.background='#f0d080'" onmouseout="this.style.background='var(--gold)'">🤲 Donate Now</a>
+        <a href="contact.html" style="background:rgba(255,255,255,0.15);color:#fff;padding:13px 28px;border-radius:30px;text-decoration:none;font-size:15px;font-weight:600;border:2px solid rgba(255,255,255,0.4)">📩 Contact Us</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="arabic">مسجد بیت الحاکم</span>
+        <span class="english">Masjid Bait ul Hakim · Lahore</span>
+        <p>Building a house of Allah for the community. Every contribution — big or small — is Sadaqah Jariyah that will benefit you in this life and the next.</p>
+        <div class="social-links">
+          <a href="https://wa.me/923214022560" target="_blank" title="WhatsApp"
+             style="display:flex;align-items:center;gap:10px;background:#25D366;padding:10px 18px;border-radius:25px;text-decoration:none;transition:all .2s"
+             onmouseover="this.style.background='#20b858'" onmouseout="this.style.background='#25D366'">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span style="color:#fff;font-size:13px;font-weight:700;letter-spacing:.3px">WhatsApp Contact</span>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="about.html">About Masjid</a></li>
+          <li><a href="donate.html">Donate Now</a></li>
+          <li><a href="gallery.html">Construction Gallery</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Five Daily Prayers</a></li>
+          <li><a href="services.html">Quran Education</a></li>
+          <li><a href="services.html">Nikah Services</a></li>
+          <li><a href="services.html">Islamic Lectures</a></li>
+          <li><a href="services.html">Ramadan Programs</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Payment Details</h4>
+        <ul>
+          <li><a href="#">📱 JazzCash: 0329-4361882</a></li>
+          <li><a href="#">Title: Khansa Mumtaz</a></li>
+          <li><a href="#">📱 EasyPaisa: 0322-9638760</a></li>
+          <li><a href="#">Title: Javeria Mumtaz</a></li>
+          <li><a href="#">🏦 Meezan Bank</a></li>
+          <li><a href="#">Title: Mumtaz Ahmad Rana</a></li>
+          <li><a href="#">A/C: 02090100786883</a></li>
+          <li><a href="#">IBAN: PK09 MEZN 0002 0901 0078 6883</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 <span>مسجد بیت الحاکم</span> — Masjid Bait ul Hakim, Lahore · Built with ❤️ for the Ummah · All donations are for the sake of Allah</p>
+    </div>
+  </div>
+</footer>
+
+<button class="sticky-donate" onclick="document.getElementById('fund').scrollIntoView({behavior:'smooth'})">🤲 Donate Now</button>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lb-content" onclick="event.stopPropagation()">
+    <button class="lb-close" onclick="closeLightbox()">✕</button>
+    <div class="lb-img" id="lbImg" style="height:300px;font-size:80px"></div>
+    <div class="lb-caption" id="lbCaption"></div>
+    <div class="lb-caption" id="lbTitle" style="color:#fff;font-weight:700;font-size:16px;margin-top:6px"></div>
+  </div>
+</div>
+
+<script>
+
+function toggleMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+window.addEventListener('scroll',function(){
+  const nav = document.getElementById('navbar');
+  if(window.scrollY > 60){nav.style.background='rgba(10,45,28,0.98)';}
+  else{nav.style.background='rgba(26,92,58,0.97)';}
+});
+async function loadLiveBanner(){
+  try{
+    const res = await fetch('/api/bayanaat/live');
+    const json = await res.json();
+    if(json.success && json.data && json.data.isLive){
+      const parts = [];
+      if(json.data.title) parts.push(json.data.title);
+      if(json.data.speaker) parts.push('by ' + json.data.speaker);
+      document.getElementById('liveBannerText').textContent = parts.length ? parts.join(' ') : 'A Bayan is live now';
+      document.getElementById('liveBanner').classList.add('show');
+    }
+  }catch(e){}
+}
+window.addEventListener('load', loadLiveBanner);
+
+/* ── SCROLL REVEAL ── */
+(function(){
+  const els = document.querySelectorAll('.reveal, .reveal-left');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if(e.isIntersecting){
+        setTimeout(() => e.target.classList.add('visible'), i * 80);
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.12});
+  els.forEach(el => io.observe(el));
+})();
+
+</script>
+
+<div class="modal-overlay" id="receiptModal">
+  <div class="modal-box" style="max-width:480px" id="receiptBox">
+    <button class="modal-close" onclick="closeReceipt()">✕</button>
+    <!-- Receipt content injected by JS -->
+  </div>
+</div>
+
+</body>
+</html>

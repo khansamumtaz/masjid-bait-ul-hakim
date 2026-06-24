@@ -242,14 +242,24 @@
       "createdAt": "2026-06-19T06:17:18.520Z"
     },
     {
-      "id": "MSG-1781872168341",
+      "id": "MSG-1781954603786",
       "name": "Khansa Mumtaz",
-      "email": "khanuurajpoot@gmail.com",
-      "phone": "03294362882",
+      "email": "su92-bscsm-f24-343@superior.edu.pk",
+      "phone": "",
       "subject": "General",
       "message": "hi",
       "read": false,
-      "createdAt": "2026-06-19T12:29:28.341Z"
+      "createdAt": "2026-06-20T11:23:23.787Z"
+    },
+    {
+      "id": "MSG-1781959534691",
+      "name": "Khansa Mumtaz",
+      "email": "su92-bscsm-f24-343@superior.edu.pk",
+      "phone": "",
+      "subject": "General",
+      "message": "hi",
+      "read": false,
+      "createdAt": "2026-06-20T12:45:34.692Z"
     }
   ],
   "gallery": [
@@ -342,5 +352,26 @@
     "email": "info@masjidbaitul-hakim.pk",
     "donationEmail": "donations@masjidbaitul-hakim.pk",
     "officeHours": "After Fajr – 9 AM & After Asr – 8 PM"
+  },
+  "bayanaat": {
+    "live": {
+      "isLive": false,
+      "title": "",
+      "speaker": "",
+      "message": "",
+      "updatedAt": "2026-06-20T10:56:05.437Z"
+    },
+    "recorded": []
+  },
+  "dailyAyat": {
+    "date": "2026-06-24",
+    "ayahNumber": 1921,
+    "surahName": "An-Nahl",
+    "surahNameArabic": "سُورَةُ النَّحۡلِ",
+    "ayahInSurah": 20,
+    "arabic": "وَٱلَّذِينَ يَدْعُونَ مِن دُونِ ٱللَّهِ لَا يَخْلُقُونَ شَيْـًۭٔا وَهُمْ يُخْلَقُونَ",
+    "englishTranslation": "And those they invoke other than Allah create nothing, and they [themselves] are created.",
+    "translation": "اور جن لوگوں کو یہ خدا کے سوا پکارتے ہیں وہ کوئی چیز بھی تو نہیں بناسکتے بلکہ خود ان کو اور بناتے ہیں",
+    "audioUrl": "https://cdn.islamic.network/quran/audio/128/ar.alafasy/1921.mp3"
   }
 }

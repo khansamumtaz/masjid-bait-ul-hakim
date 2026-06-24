@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bayanaat Admin — Masjid Bait ul Hakim</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#f4f1e8;color:#1a1a1a;padding:24px}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-size:22px;color:#1a5c3a;margin-bottom:4px}
+.sub{color:#666;font-size:13px;margin-bottom:28px}
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 4px 16px rgba(0,0,0,0.08);margin-bottom:24px}
+.card h2{font-size:16px;color:#1a5c3a;margin-bottom:16px;border-bottom:2px solid #c9a84c;padding-bottom:8px}
+label{display:block;font-size:13px;font-weight:600;color:#444;margin:12px 0 4px}
+input[type=text],input[type=date],select,textarea{width:100%;padding:10px;border:1px solid #ddd;border-radius:8px;font-size:14px;font-family:inherit}
+textarea{resize:vertical;min-height:60px}
+.row{display:flex;align-items:center;gap:10px;margin:14px 0}
+.row input[type=checkbox]{width:20px;height:20px}
+button{background:#1a5c3a;color:#fff;border:none;padding:10px 22px;border-radius:8px;font-weight:700;font-size:14px;cursor:pointer;margin-top:16px}
+button:hover{background:#2d8a57}
+button.danger{background:#c0392b;padding:6px 14px;font-size:12px;margin:0}
+button.danger:hover{background:#e74c3c}
+.status{font-size:13px;margin-top:10px;padding:8px 12px;border-radius:6px;display:none}
+.status.ok{background:#e8f5ee;color:#1a5c3a;display:block}
+.status.err{background:#fdecea;color:#c0392b;display:block}
+.list{margin-top:8px}
+.item{display:flex;justify-content:space-between;align-items:center;padding:12px;border:1px solid #eee;border-radius:8px;margin-bottom:8px}
+.item-info b{font-size:14px}
+.item-info div{font-size:12px;color:#777;margin-top:2px}
+.hint{font-size:12px;color:#888;margin-top:4px;line-height:1.5}
+.hint code{background:#f0eee2;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>🕌 Bayanaat Admin</h1>
+  <div class="sub">Manage the Live banner and Recorded Bayanaat list for the website.</div>
+
+  <!-- LIVE STATUS -->
+  <div class="card">
+    <h2>Live Bayan</h2>
+    <div class="row">
+      <input type="checkbox" id="isLive">
+      <label style="margin:0">Currently Live</label>
+    </div>
+    <label>Title (optional)</label>
+    <input type="text" id="liveTitle" placeholder="e.g. Jumma Khutbah">
+    <label>Speaker (optional)</label>
+    <input type="text" id="liveSpeaker" placeholder="e.g. Maulana ___">
+    <label>Note (optional)</label>
+    <input type="text" id="liveMessage" placeholder="Any extra note shown internally">
+    <button onclick="saveLive()">Save Live Status</button>
+    <div class="status" id="liveStatus"></div>
+  </div>
+
+  <!-- ADD RECORDED -->
+  <div class="card">
+    <h2>Add Recorded Bayan</h2>
+    <div class="hint">
+      1) Upload the audio/video file into the <code>/bayanaat</code> folder on your server (via FTP / file manager / your hosting dashboard).<br>
+      2) Then enter its path below as <code>/bayanaat/your-file-name.mp3</code>.
+    </div>
+    <label>Title *</label>
+    <input type="text" id="newTitle" placeholder="e.g. The Importance of Salah">
+    <label>Speaker</label>
+    <input type="text" id="newSpeaker" placeholder="e.g. Maulana ___">
+    <label>Date</label>
+    <input type="date" id="newDate">
+    <label>Type</label>
+    <select id="newType">
+      <option value="audio">Audio</option>
+      <option value="video">Video</option>
+    </select>
+    <label>File path *</label>
+    <input type="text" id="newFileUrl" placeholder="/bayanaat/jumma-khutbah.mp3">
+    <label>Description (optional)</label>
+    <textarea id="newDesc" placeholder="Short description shown on the website"></textarea>
+    <button onclick="addRecorded()">Add Bayan</button>
+    <div class="status" id="addStatus"></div>
+  </div>
+
+  <!-- EXISTING RECORDED -->
+  <div class="card">
+    <h2>Existing Recorded Bayanaat</h2>
+    <div class="list" id="recordedList">Loading…</div>
+  </div>
+</div>
+
+<script>
+async function loadLive(){
+  const res = await fetch('/api/bayanaat/live');
+  const json = await res.json();
+  if(json.success){
+    document.getElementById('isLive').checked = json.data.isLive;
+    document.getElementById('liveTitle').value = json.data.title || '';
+    document.getElementById('liveSpeaker').value = json.data.speaker || '';
+    document.getElementById('liveMessage').value = json.data.message || '';
+  }
+}
+async function saveLive(){
+  const body = {
+    isLive: document.getElementById('isLive').checked,
+    title: document.getElementById('liveTitle').value,
+    speaker: document.getElementById('liveSpeaker').value,
+    message: document.getElementById('liveMessage').value
+  };
+  const statusEl = document.getElementById('liveStatus');
+  try{
+    const res = await fetch('/api/bayanaat/live',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const json = await res.json();
+    if(json.success){ statusEl.className='status ok'; statusEl.textContent='Saved ✓'; }
+    else { statusEl.className='status err'; statusEl.textContent=json.message || 'Failed to save.'; }
+  }catch(e){ statusEl.className='status err'; statusEl.textContent='Network error — could not save.'; }
+}
+
+async function loadRecorded(){
+  const listEl = document.getElementById('recordedList');
+  try{
+    const res = await fetch('/api/bayanaat/recorded');
+    const json = await res.json();
+    if(!json.success || !json.data.length){ listEl.innerHTML = '<div style="color:#888;font-size:13px">No recorded bayanaat yet.</div>'; return; }
+    listEl.innerHTML = json.data.map(b => `
+      <div class="item">
+        <div class="item-info">
+          <b>${escapeHTML(b.title)}</b>
+          <div>${escapeHTML(b.speaker||'')} ${b.speaker?'·':''} ${b.date} · ${b.type}</div>
+        </div>
+        <button class="danger" onclick="deleteRecorded('${b.id}')">Delete</button>
+      </div>
+    `).join('');
+  }catch(e){ listEl.innerHTML = '<div style="color:#c0392b;font-size:13px">Could not load list.</div>'; }
+}
+async function addRecorded(){
+  const title = document.getElementById('newTitle').value.trim();
+  const fileUrl = document.getElementById('newFileUrl').value.trim();
+  const statusEl = document.getElementById('addStatus');
+  if(!title || !fileUrl){ statusEl.className='status err'; statusEl.textContent='Title and File path are required.'; return; }
+  const body = {
+    title, fileUrl,
+    speaker: document.getElementById('newSpeaker').value.trim(),
+    date: document.getElementById('newDate').value,
+    type: document.getElementById('newType').value,
+    description: document.getElementById('newDesc').value.trim()
+  };
+  try{
+    const res = await fetch('/api/bayanaat/recorded',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const json = await res.json();
+    if(json.success){
+      statusEl.className='status ok'; statusEl.textContent='Added ✓';
+      document.getElementById('newTitle').value='';
+      document.getElementById('newSpeaker').value='';
+      document.getElementById('newDate').value='';
+      document.getElementById('newFileUrl').value='';
+      document.getElementById('newDesc').value='';
+      loadRecorded();
+    } else { statusEl.className='status err'; statusEl.textContent=json.message || 'Failed to add.'; }
+  }catch(e){ statusEl.className='status err'; statusEl.textContent='Network error — could not add.'; }
+}
+async function deleteRecorded(id){
+  if(!confirm('Delete this bayan?')) return;
+  await fetch('/api/bayanaat/recorded/'+id,{method:'DELETE'});
+  loadRecorded();
+}
+function escapeHTML(str){ const d=document.createElement('div'); d.textContent=str; return d.innerHTML; }
+
+loadLive();
+loadRecorded();
+</script>
+</body>
+</html>

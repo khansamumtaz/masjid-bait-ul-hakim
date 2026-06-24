@@ -1,333 +1,208 @@
 # مسجد بیت الحاکم — Masjid Bait ul Hakim
-### Official Website — Construction, Donation & Community Portal
+
+A responsive, single-page website for **Masjid Bait ul Hakim**, a mosque under active construction in Lahore, Pakistan. The site serves as a community hub for fundraising, construction progress tracking, service information, and visitor contact.
 
 ---
 
-## 📁 Project Structure
+## 🕌 About the Masjid
+
+Masjid Bait ul Hakim is being constructed at **Maraka Quarters, Multan Road, Lahore, Punjab, Pakistan**. The masjid is designed to accommodate up to **2,000 worshippers** and will serve the local Muslim community as a centre for Salah, Islamic education, and spiritual growth. The ground floor is already operational, with Quran classes running for children while construction of the upper floor continues.
+
+**Fundraising Goal:** ₨5,00,00,000 (₨5 Crore)  
+**Raised So Far:** ₨2,50,00,000 (50% reached) · 247 donors
+
+---
+
+## 🌐 Website Pages & Sections
+
+This is a **single-page application** (`masjid-bait-ul-hakim.html`) with the following sections:
+
+| Section | ID | Description |
+|---|---|---|
+| Hero | `#hero` | Full-screen intro with masjid name, tagline, live fund stats, and CTA buttons |
+| About | `#about` | Masjid description, key features, and imagery |
+| Donate / Fund | `#fund` | Online donation form with fund progress tracker |
+| Construction Gallery | `#progress` | Slideshow of 20 real construction photos with captions |
+| Services | `#services` | Six masjid services offered to the community |
+| Contact | `#contact` | Address, phone, email, office hours, map, and contact form |
+
+---
+
+## ✨ Features
+
+### Frontend
+- **Responsive design** — fully mobile-optimised with a hamburger menu, compact donation section, and adaptive layouts
+- **Islamic aesthetic** — gold (`#c9a84c`) and green (`#1a5c3a`) colour palette; Amiri (Arabic) and Nunito fonts
+- **Live fund tracker** — progress bar and stats update in real time as donations are submitted
+- **20-photo slideshow** — auto-advances every 3.5 seconds with dot navigation, thumbnail strip, prev/next buttons, and slide captions showing real construction milestones (June 2026)
+- **Donation flow** — amount selector (₨500 / ₨1,000 / ₨10,000 or custom), payment method selector, inline payment details, confirmation checkbox, receipt modal
+- **Printable donation receipt** — receipt modal with Donation ID, donor name, amount, method, date/time; "Print / Save" opens a print window; WhatsApp button pre-fills a message to the masjid admin
+- **Contact form** — sends to backend `/api/contact` endpoint with success/error feedback
+- **Smooth scroll nav** — fixed navbar that darkens on scroll; links to all sections
+- **Google Maps integration** — "Get Directions" button links to `maps.google.com` with masjid coordinates
+
+### Backend (Node.js / Express)
+- Serves the static HTML file
+- **`POST /api/donate`** — logs donation (name, phone, amount, paymentMethod) to `db.json`; sends email notification via Gmail SMTP
+- **`POST /api/contact`** — receives contact form submissions; sends email to masjid admin via Gmail SMTP
+- Timezone-aware email formatting: Pakistan Standard Time (UTC+5)
+- Environment-based configuration via `.env`
+
+---
+
+## 🗂 Project Structure
 
 ```
-masjid-bait-ul-hakim/
-│
-├── masjid-bait-ul-hakim.html   ← Frontend (complete website)
-├── server.js                    ← Backend (Node.js + Express API)
-├── db.json                      ← Database (auto-created on first run)
-├── package.json                 ← Dependencies & scripts
-└── README.md                    ← This file
+masjid/
+├── masjid-bait-ul-hakim.html   # Main website (all HTML, CSS, JS in one file)
+├── server.js                   # Express backend (donate & contact APIs)
+├── prayer-times-data.js        # Prayer times data
+├── db.json                     # Local JSON database for donations
+├── package.json                # Node.js project config
+├── package-lock.json
+├── .env                        # Environment variables (not committed)
+├── .gitignore
+├── rename-photos.ps1           # PowerShell script to rename/organise photos
+├── img1.jpeg – img11.jpeg      # Construction photos (JPEG)
+├── img12.jfif – img20.jfif     # Construction photos (JFIF)
+├── masjid_web_fit.jpg          # About section image
+└── node_modules/               # Dependencies
 ```
 
 ---
 
-## ⚡ Quick Start
+## 🛠 Tech Stack
 
-### 1. Install Node.js
-Download from: https://nodejs.org (v14 or higher)
-
-### 2. Create project folder
-```bash
-mkdir masjid-bait-ul-hakim
-cd masjid-bait-ul-hakim
-```
-
-### 3. Place all files in the folder
-```
-masjid-bait-ul-hakim.html
-server.js
-db.json
-package.json
-README.md
-```
-
-### 4. Install dependencies
-```bash
-npm install
-```
-
-### 5. Start the server
-```bash
-# Production
-npm start
-
-# Development (auto-reload)
-npm run dev
-```
-
-### 6. Open in browser
-```
-http://localhost:3000
-```
-
----
-
-## 🌐 Website Sections
-
-| Section | Description |
+| Layer | Technology |
 |---|---|
-| **Hero** | Masjid name in Urdu/Arabic, fund stats, CTA buttons |
-| **About** | Masjid overview, capacity, features |
-| **Fund Collection** | Live donation form, progress bar, cost breakdown |
-| **Construction Gallery** | Phase-filtered photo gallery with lightbox |
-| **Timeline** | Construction milestones from 2023 to inauguration |
-| **Prayer Times** | All 6 daily prayers with iqama times |
-| **Services** | Quran classes, nikah, lectures, community welfare |
-| **Contact & Map** | Google Maps link, contact form, address & phone |
-| **Footer** | Bank details, quick links, social media |
+| Frontend | Vanilla HTML5, CSS3, JavaScript (no framework) |
+| Fonts | Google Fonts — Amiri (Arabic), Nunito |
+| Backend | Node.js + Express |
+| Email | Gmail SMTP (via Nodemailer) |
+| Database | Flat-file JSON (`db.json`) |
+| Deployment | Railway (cloud hosting) |
+| Dependencies | `express`, `dotenv`, `cors` |
 
 ---
 
-## 📡 API Reference
+## ⚙️ Setup & Installation
 
-### Base URL
-```
-http://localhost:3000/api
-```
+### Prerequisites
+- Node.js (v18+ recommended for Railway compatibility)
+- A Gmail account with an **App Password** enabled
 
----
+### Steps
 
-### 📊 Fund Stats
+1. **Clone the repository**
+   ```bash
+   git clone <repo-url>
+   cd masjid
+   ```
 
-**GET** `/api/stats`
-```json
-// Response
-{
-  "success": true,
-  "data": {
-    "totalGoal": 8500000,
-    "totalRaised": 5780000,
-    "totalDonors": 247,
-    "percent": 68,
-    "remaining": 2720000,
-    "lastUpdated": "2024-05-15T10:30:00.000Z"
-  }
-}
-```
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
----
+3. **Create your `.env` file**
+   ```env
+   GMAIL_EMAIL=your_gmail@gmail.com
+   GMAIL_APP_PASSWORD=your_16_character_app_password
+   PORT=3000
+   ```
+   > To generate a Gmail App Password: Google Account → Security → 2-Step Verification → App Passwords
 
-### 💰 Donations
+4. **Start the server**
+   ```bash
+   node server.js
+   ```
 
-**POST** `/api/donate`
-```json
-// Request Body
-{
-  "name": "Ahmed Khan",
-  "phone": "0300-1234567",
-  "amount": 5000,
-  "paymentMethod": "easypaisa"
-}
-
-// Response
-{
-  "success": true,
-  "message": "JazakAllah Khair! Donation recorded successfully.",
-  "donationId": "DON-1700000001",
-  "newTotal": 5785000,
-  "newDonors": 248
-}
-```
-
-**GET** `/api/donations?page=1&limit=20`
-```json
-// Response
-{
-  "success": true,
-  "total": 247,
-  "page": 1,
-  "data": [ ...donations ]
-}
-```
-
-**PATCH** `/api/donations/:id`
-```json
-// Request Body
-{ "status": "confirmed" }
-// status options: "pending" | "confirmed" | "rejected"
-```
+5. Open `http://localhost:3000` in your browser.
 
 ---
 
-### ✉️ Contact Messages
+## 🚀 Deployment (Railway)
 
-**POST** `/api/contact`
-```json
-// Request Body
-{
-  "name": "Sara Ahmed",
-  "email": "sara@example.com",
-  "phone": "0321-0000000",
-  "subject": "Quran Classes",
-  "message": "I want to enroll my child."
-}
-```
+The project is deployed on [Railway](https://railway.app). Railway reads the `PORT` environment variable automatically — make sure `server.js` uses `process.env.PORT`.
 
-**GET** `/api/contacts?unread=true`
-```json
-// Response
-{
-  "success": true,
-  "total": 2,
-  "data": [ ...messages ]
-}
-```
+Steps:
+1. Push your code to GitHub
+2. Connect the repo to a new Railway project
+3. Add `GMAIL_EMAIL` and `GMAIL_APP_PASSWORD` as environment variables in Railway's dashboard
+4. Railway will auto-detect Node.js and run `npm start`
 
 ---
 
-### 🕌 Prayer Times
+## 💳 Donation Payment Methods
 
-**GET** `/api/prayer-times`
-```json
-// Response
-{
-  "success": true,
-  "data": {
-    "fajr":    { "adhan": "04:22", "iqama": "04:40" },
-    "zuhr":    { "adhan": "12:10", "iqama": "12:30" },
-    "asr":     { "adhan": "16:05", "iqama": "16:20" },
-    "maghrib": { "adhan": "19:18", "iqama": "19:18" },
-    "isha":    { "adhan": "20:48", "iqama": "21:00" },
-    "jumuah":  { "adhan": "13:00", "iqama": "13:15" }
-  }
-}
-```
-
-**PUT** `/api/prayer-times`
-```json
-// Request Body (update any prayer)
-{
-  "fajr": { "adhan": "04:15", "iqama": "04:35" }
-}
-```
-
----
-
-### 🖼️ Gallery
-
-**GET** `/api/gallery?phase=phase1`
-```
-phase options: phase1 | phase2 | phase3 | (omit for all)
-```
-
-**POST** `/api/gallery`
-```json
-// Request Body
-{
-  "title": "Dome Construction Begins",
-  "description": "Central dome framework started.",
-  "phase": "phase3",
-  "imageUrl": "/images/dome-day1.jpg",
-  "date": "2024-06-01"
-}
-```
-
-**DELETE** `/api/gallery/:id`
-
----
-
-## 🏦 Bank & Payment Details
-
-Update these in `db.json` under `bankDetails`:
+The website supports the following payment channels:
 
 | Method | Details |
 |---|---|
-| **HBL Bank** | A/C: 0001-0000000-00 |
-| **IBAN** | PK00HABB0001000000000 |
-| **EasyPaisa** | 0300-0000000 |
-| **JazzCash** | 0300-0000000 |
+| 📱 JazzCash | 0329-4361882 |
+| 📱 EasyPaisa | 0322-9638760 |
+| 🏦 Meezan Bank | Account Title: Mumtaz Ahmad Rana |
+| | A/C No: 02090100786883 |
+| | IBAN: PK09 MEZN 0002 0901 0078 6883 |
+| 💵 Cash | Available at the masjid office |
+
+After donating, the donor is prompted to send a payment screenshot via WhatsApp to **+92 321 4022560** for confirmation.
 
 ---
 
-## 🔧 Customization Guide
+## 🏗 Construction Fund Breakdown
 
-### Update Masjid Info
-Edit `db.json` → `masjid` section:
-```json
-"masjid": {
-  "name": "مسجد بیت الحاکم",
-  "totalGoal": 8500000,
-  "totalRaised": 5780000
-}
-```
-
-### Update Prayer Times
-Edit `db.json` → `prayerTimes` section or use the PUT API.
-
-### Add Real Photos
-In `db.json` → `gallery`, set `imageUrl` to your image path:
-```json
-"imageUrl": "/images/construction-phase1.jpg"
-```
-Place images in an `/images/` folder alongside `server.js`.
-
-### Connect Real Google Map
-In `masjid-bait-ul-hakim.html`, find the map section and replace with:
-```html
-<iframe
-  src="https://maps.google.com/maps?q=YOUR+ADDRESS&output=embed"
-  width="100%" height="360" style="border:0" allowfullscreen>
-</iframe>
-```
+| Phase | Budget |
+|---|---|
+| Foundation & Structure | ₨1 Crore |
+| Brickwork & Walls | ₨1 Crore |
+| Roof & Dome | ₨1 Crore |
+| Flooring & Tiling | ₨65 Lakh |
+| Electrical & Plumbing | ₨45 Lakh |
+| Interior & Furnishing | ₨90 Lakh |
+| **Total** | **₨5 Crore** |
 
 ---
 
-## 🚀 Deployment (Free Hosting)
+## 🕋 Masjid Services
 
-### Option 1 — Railway (Recommended)
-```bash
-# Install Railway CLI
-npm install -g @railway/cli
-
-# Login and deploy
-railway login
-railway init
-railway up
-```
-
-### Option 2 — Render.com
-1. Push code to GitHub
-2. Go to render.com → New Web Service
-3. Connect your GitHub repo
-4. Set Start Command: `node server.js`
-5. Deploy — free tier available
-
-### Option 3 — VPS (cPanel / Hostinger)
-```bash
-# Upload files via FTP or File Manager
-# Then in terminal:
-npm install
-npm start
-
-# Use PM2 to keep it running:
-npm install -g pm2
-pm2 start server.js --name masjid
-pm2 save
-pm2 startup
-```
+1. **Five Daily Prayers** — Jamaat prayers held at the temporary prayer site daily. Full Fajr to Isha schedule.
+2. **Quran Education** — Classes for children (ages 5–15) every evening after Maghrib.
+3. **Nikah Services** — Ceremonies conducted by certified Islamic scholars. Prior appointment required.
+4. **Islamic Lectures** — Weekly dars after Fajr and Isha. Monthly scholars' programmes.
+5. **Community Support** — Zakat distribution, food assistance for needy families.
+6. **Ramadan Programs** — Iftaar arrangements, Taraweeh, I'tikaf, and Laylat-ul-Qadr programmes.
 
 ---
 
-## 📱 Features Summary
+## 📞 Contact Information
 
-- ✅ Fully Responsive (Mobile, Tablet, Desktop)
-- ✅ Urdu/Arabic typography (Amiri font)
-- ✅ Live donation form with progress bar
-- ✅ Construction gallery with phase filters & lightbox
-- ✅ Prayer times with active prayer highlight
-- ✅ Construction timeline (2023 → 2025)
-- ✅ Cost breakdown per phase
-- ✅ Contact form with backend storage
-- ✅ Google Maps integration
-- ✅ REST API for all features
-- ✅ JSON file database (no setup needed)
-- ✅ Sticky donate button
-- ✅ Mobile hamburger menu
+| | |
+|---|---|
+| **Address** | مسجد بیت الحاکم — Maraka Quarters, Multan Road, Lahore, Punjab, Pakistan |
+| **Phone** | +92 321 4022560 |
+| **Email** | ranamumtaz123go@gmail.com |
+| **WhatsApp** | [wa.me/923214022560](https://wa.me/923214022560) |
+| **Office Hours** | After Fajr – 9 AM & After Asr – 8 PM · Saturday & Sunday: After all prayers |
+| **Google Maps** | [Maraka Quarters, Multan Road, Lahore](https://maps.google.com/?q=31.393578679545257,74.1537863509163) |
 
 ---
 
-## 🤲 May Allah Accept This Project as Sadaqah Jariyah
+## 📜 Environment Variables
 
-*"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise."*
-*(Sahih Bukhari & Muslim)*
+| Variable | Description |
+|---|---|
+| `GMAIL_EMAIL` | Gmail address used to send notification emails |
+| `GMAIL_APP_PASSWORD` | 16-character Gmail App Password (not your regular password) |
+| `PORT` | Server port (defaults to `3000`; Railway sets this automatically) |
+
+> ⚠️ Never commit your `.env` file. It is already listed in `.gitignore`.
 
 ---
 
-**Built for:** مسجد بیت الحاکم — Lahore, Pakistan  
-**Stack:** HTML · CSS · JavaScript · Node.js · Express
+## 🤲 Sadaqah Jariyah
+
+> *"Whoever builds a mosque for Allah, Allah will build for him a house in Paradise."*
+> — Sahih al-Bukhari & Sahih Muslim
+
+Every contribution to Masjid Bait ul Hakim is Sadaqah Jariyah — a continuing charity whose reward lasts long after we are gone. May Allah accept from all who gave.

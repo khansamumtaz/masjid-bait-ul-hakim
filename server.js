@@ -26,7 +26,7 @@ app.use(express.static(__dirname));
 
 // ── Serve homepage ──
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'masjid-bait-ul-hakim.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // ── Init DB ──
@@ -51,6 +51,26 @@ function initDB() {
         maghrib: { adhan: "19:18", iqama: "19:18" },
         isha:    { adhan: "20:48", iqama: "21:00" },
         jumuah:  { adhan: "13:00", iqama: "13:15" }
+      },
+      bayanaat: {
+        live: {
+          isLive: false,
+          title: "",
+          speaker: "",
+          message: "",
+          updatedAt: new Date().toISOString()
+        },
+        recorded: []
+      },
+      dailyAyat: {
+        date: "",
+        ayahNumber: 0,
+        surahName: "",
+        surahNameArabic: "",
+        ayahInSurah: 0,
+        arabic: "",
+        translation: "",
+        audioUrl: ""
       }
     };
     fs.writeFileSync(DB_FILE, JSON.stringify(defaultData, null, 2));
@@ -58,10 +78,29 @@ function initDB() {
   }
 }
 
+// ── Migrate older db.json files that pre-date Bayanaat / Daily Ayat ──
+function migrateDB() {
+  const db = readDB();
+  let changed = false;
+  if (!db.bayanaat) {
+    db.bayanaat = {
+      live: { isLive: false, title: "", speaker: "", message: "", updatedAt: new Date().toISOString() },
+      recorded: []
+    };
+    changed = true;
+  }
+  if (!db.dailyAyat) {
+    db.dailyAyat = { date: "", ayahNumber: 0, surahName: "", surahNameArabic: "", ayahInSurah: 0, arabic: "", translation: "", audioUrl: "" };
+    changed = true;
+  }
+  if (changed) { writeDB(db); console.log('✅ Database migrated — Bayanaat & Daily Ayat sections added'); }
+}
+
 function readDB() { return JSON.parse(fs.readFileSync(DB_FILE, 'utf8')); }
 function writeDB(data) { fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2)); }
 
 initDB();
+migrateDB();
 
 // ══════════════════════════════════════════
 //  BREVO HTTP API — works on port 443
@@ -207,7 +246,7 @@ async function sendContactAlert(contact) {
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Email</td><td style="padding:8px 0;font-size:14px;border-bottom:1px solid #f0f0f0"><a href="mailto:${contact.email}" style="color:#1a5c3a">${contact.email}</a></td></tr>
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Phone</td><td style="padding:8px 0;font-size:14px;border-bottom:1px solid #f0f0f0">${contact.phone || 'Not provided'}</td></tr>
         <tr><td style="padding:8px 0;color:#666;font-size:14px;border-bottom:1px solid #f0f0f0">Subject</td><td style="padding:8px 0;font-size:14px;font-weight:700;border-bottom:1px solid #f0f0f0">${contact.subject || 'General'}</td></tr>
-        <tr><td style="padding:8px 0;color:#666;font-size:14px">Date</td><td style="padding:8px 0;font-size:14px">${new Date(contact.createdAt).toLocaleString('en-PK', {dateStyle:'full', timeStyle:'short', timeZone:'Asia/Karachi'})}</td></tr>
+        <tr><td style="padding:8px 0;color:#666;font-size:14px">Date</td><td style="padding:8px 0;font-size:14px">${new Date(contact.createdAt).toLocaleString('en-PK', {timeZone:'Asia/Karachi'})}</td></tr>
       </table>
       <div style="margin-top:20px">
         <div style="font-size:13px;font-weight:700;color:#1a5c3a;margin-bottom:8px">Message:</div>
@@ -437,6 +476,172 @@ app.delete('/api/gallery/:id', (req, res) => {
   catch (err) { res.status(500).json({ success: false, message: 'Server error' }); }
 });
 
+// ══════════════════════════════════════════
+//  BAYANAAT — Live banner + Recorded list
+// ══════════════════════════════════════════
+
+// ── GET /api/bayanaat/live — current live status ──
+app.get('/api/bayanaat/live', (req, res) => {
+  try { const db = readDB(); res.json({ success: true, data: db.bayanaat.live }); }
+  catch (err) { res.status(500).json({ success: false, message: 'Server error' }); }
+});
+
+// ── PUT /api/bayanaat/live — toggle / update live status (admin) ──
+app.put('/api/bayanaat/live', (req, res) => {
+  try {
+    const { isLive, title, speaker, message } = req.body;
+    const db = readDB();
+    db.bayanaat.live = {
+      isLive: typeof isLive === 'boolean' ? isLive : db.bayanaat.live.isLive,
+      title: title !== undefined ? title : db.bayanaat.live.title,
+      speaker: speaker !== undefined ? speaker : db.bayanaat.live.speaker,
+      message: message !== undefined ? message : db.bayanaat.live.message,
+      updatedAt: new Date().toISOString()
+    };
+    writeDB(db);
+    res.json({ success: true, data: db.bayanaat.live });
+  } catch (err) { res.status(500).json({ success: false, message: 'Server error' }); }
+});
+
+// ── GET /api/bayanaat/recorded — list recorded bayanaat ──
+app.get('/api/bayanaat/recorded', (req, res) => {
+  try {
+    const db = readDB();
+    const items = [...db.bayanaat.recorded].sort((a, b) => new Date(b.date) - new Date(a.date));
+    res.json({ success: true, total: items.length, data: items });
+  } catch (err) { res.status(500).json({ success: false, message: 'Server error' }); }
+});
+
+// ── POST /api/bayanaat/recorded — register an uploaded file (admin) ──
+// Upload the actual audio/video file into the /bayanaat folder first (e.g. via FTP/file manager),
+// then call this with fileUrl: "/bayanaat/your-file-name.mp3"
+app.post('/api/bayanaat/recorded', (req, res) => {
+  try {
+    const { title, speaker, date, fileUrl, type, description } = req.body;
+    if (!title || !fileUrl) return res.status(400).json({ success: false, message: 'Title and fileUrl required.' });
+    if (type && type !== 'audio' && type !== 'video') return res.status(400).json({ success: false, message: "type must be 'audio' or 'video'." });
+    const db = readDB();
+    const item = {
+      id: 'BYN-' + Date.now(),
+      title,
+      speaker: speaker || '',
+      description: description || '',
+      date: date || new Date().toISOString().split('T')[0],
+      fileUrl,
+      type: type || 'audio',
+      createdAt: new Date().toISOString()
+    };
+    db.bayanaat.recorded.push(item);
+    writeDB(db);
+    res.status(201).json({ success: true, item });
+  } catch (err) { res.status(500).json({ success: false, message: 'Server error' }); }
+});
+
+// ── DELETE /api/bayanaat/recorded/:id (admin) ──
+app.delete('/api/bayanaat/recorded/:id', (req, res) => {
+  try {
+    const db = readDB();
+    const before = db.bayanaat.recorded.length;
+    db.bayanaat.recorded = db.bayanaat.recorded.filter(i => i.id !== req.params.id);
+    if (db.bayanaat.recorded.length === before) return res.status(404).json({ success: false, message: 'Not found.' });
+    writeDB(db);
+    res.json({ success: true });
+  } catch (err) { res.status(500).json({ success: false, message: 'Server error' }); }
+});
+
+// ══════════════════════════════════════════
+//  DAILY AYAT — auto-rotates once per day,
+//  fetched from api.alquran.cloud (free, no key needed)
+// ══════════════════════════════════════════
+
+const TOTAL_AYAHS = 6236; // total verses in the Quran
+
+function httpsGetJSON(hostname, urlPath, timeoutMs = 8000) {
+  return new Promise((resolve, reject) => {
+    const options = { hostname, port: 443, path: urlPath, method: 'GET', headers: { 'Accept': 'application/json' } };
+    const req = https.request(options, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        if (res.statusCode >= 200 && res.statusCode < 300) {
+          try { resolve(JSON.parse(data)); } catch (e) { reject(new Error('Invalid JSON from ' + hostname + ': ' + e.message)); }
+        } else {
+          reject(new Error(`${hostname} responded with status ${res.statusCode}`));
+        }
+      });
+    });
+    req.setTimeout(timeoutMs, () => req.destroy(new Error(`${hostname} timed out after ${timeoutMs}ms`)));
+    req.on('error', reject);
+    req.end();
+  });
+}
+
+function todayPKTString() {
+  // YYYY-MM-DD in Pakistan Standard Time, so the ayat rotates at midnight PKT, not server time
+  return new Date().toLocaleDateString('en-CA', { timeZone: 'Asia/Karachi' }); // en-CA gives YYYY-MM-DD
+}
+
+async function fetchAndCacheTodaysAyat(db) {
+  // Deterministic but ever-changing pick: days since Unix epoch (in PKT) mod total ayahs
+  const pktNow = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Karachi' }));
+  const daysSinceEpoch = Math.floor(pktNow.getTime() / 86400000);
+  const ayahNumber = (daysSinceEpoch % TOTAL_AYAHS) + 1;
+
+  // Arabic text + Urdu translation (Fateh Muhammad Jalandhry)
+  let json;
+  try {
+    json = await httpsGetJSON('api.alquran.cloud', `/v1/ayah/${ayahNumber}/editions/quran-uthmani,en.sahih,ur.jalandhry`);
+  } catch (err) {
+    console.error('⚠️  Daily Ayat: first attempt failed —', err.message, '— retrying once...');
+    json = await httpsGetJSON('api.alquran.cloud', `/v1/ayah/${ayahNumber}/editions/quran-uthmani,en.sahih,ur.jalandhry`); // one retry
+  }
+
+  const editions = json.data; // array: [arabic, english, urdu]
+  if (!Array.isArray(editions) || editions.length < 2) throw new Error('Unexpected API response shape for ayah ' + ayahNumber);
+
+  const arabicEd = editions.find(e => e.edition && e.edition.identifier === 'quran-uthmani') || editions[0];
+  const englishEd = editions.find(e => e.edition && e.edition.identifier === 'en.sahih') || null;
+  const transEd = editions.find(e => e.edition && e.edition.identifier === 'ur.jalandhry') || editions[1];
+
+  const updated = {
+    date: todayPKTString(),
+    ayahNumber,
+    surahName: arabicEd.surah.englishName,
+    surahNameArabic: arabicEd.surah.name,
+    ayahInSurah: arabicEd.numberInSurah,
+    arabic: arabicEd.text,
+    englishTranslation: englishEd ? englishEd.text : '',
+    translation: transEd.text,
+    audioUrl: `https://cdn.islamic.network/quran/audio/128/ar.alafasy/${ayahNumber}.mp3`
+  };
+  db.dailyAyat = updated;
+  writeDB(db);
+  console.log(`✅ Daily Ayat refreshed — Surah ${updated.surahName}, Ayah ${updated.ayahInSurah}`);
+  return updated;
+}
+
+// ── GET /api/daily-ayat — today's ayat, auto-refreshes once per day ──
+app.get('/api/daily-ayat', async (req, res) => {
+  try {
+    const db = readDB();
+    if (db.dailyAyat && db.dailyAyat.date === todayPKTString() && db.dailyAyat.arabic) {
+      return res.json({ success: true, cached: true, data: db.dailyAyat });
+    }
+    const fresh = await fetchAndCacheTodaysAyat(db);
+    res.json({ success: true, cached: false, data: fresh });
+  } catch (err) {
+    console.error('❌ Daily Ayat fetch failed:', err.message);
+    // If the external API is unreachable, fall back to whatever was last cached (even if stale)
+    try {
+      const db = readDB();
+      if (db.dailyAyat && db.dailyAyat.arabic) {
+        return res.json({ success: true, cached: true, stale: true, data: db.dailyAyat });
+      }
+    } catch (_) {}
+    res.status(500).json({ success: false, message: 'Could not load today\'s ayat. Please try again shortly.' });
+  }
+});
+
 // ── 404 ──
 app.use((req, res) => { res.status(404).json({ success: false, message: 'Route not found.' }); });
 
@@ -446,7 +651,7 @@ app.listen(PORT, () => {
   console.log('🕌  Masjid Bait ul Hakim — Server Running');
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
   console.log(`🌐  Website  → http://localhost:${PORT}`);
-  console.log(`🔒  Admin    → http://localhost:${PORT}/admin.html`);
+  console.log(`🔒  Admin    → http://localhost:${PORT}/bayanaat-admin.html`);
   console.log(`📡  API      → http://localhost:${PORT}/api`);
   console.log(`📧  Alerts  → ${EMAIL_CONFIG.yourEmail}`);
   console.log('━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━');
