@@ -301,7 +301,7 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
   .ayat-card{padding:24px}
   .ayat-player{max-width:100%}
   .pm-tabs{grid-template-columns:1fr 1fr}
-  .reveal,.reveal-scale{opacity:1!important;transform:none!important}
+  .reveal,.reveal-scale,.footer-col,.footer-brand{opacity:1!important;transform:none!important}
 }
 
 
@@ -443,8 +443,8 @@ footer{background:#0a2d1c;color:rgba(255,255,255,0.7);padding:60px 24px 24px}
 .reveal-scale.in{opacity:1;transform:scale(1) translateY(0)}
 
 /* ── Footer columns float-in stagger ── */
-.footer-col,.footer-brand{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
-.footer-col.in,.footer-brand.in{opacity:1;transform:translateY(0)}
+.footer-col,.footer-brand{opacity:1;transform:translateY(0);transition:opacity .7s ease,transform .7s ease}
+.footer-col.in,.footer-brand.in{opacity:1!important;transform:translateY(0)!important}
 
 @media (prefers-reduced-motion: reduce){
   .hero-ornament,.hero-blob,.hero-arabic.floaty,.hero-particle,.hero-geo{animation:none!important}
